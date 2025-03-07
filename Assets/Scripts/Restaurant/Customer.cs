@@ -28,6 +28,12 @@ public class Customer : MonoBehaviour
 	private Animator animator;
 
 	public ParticleSystem effect;
+	public ParticleSystemRenderer particleRenderer;
+	public Material bronzeCoin;
+	public Material silverCoin;
+	public Material goldCoin;
+	public Material trophyCoin;
+
 	private float valueMultiplier = 1f;
 
 	public void Initialize(int index)
@@ -36,6 +42,12 @@ public class Customer : MonoBehaviour
 		gameObject.name = "Customer " + index;
 
 		seatManager = FindObjectOfType<SeatManager>();
+
+
+		// Coin effect
+		effect = Instantiate(effect, gameObject.transform);
+		particleRenderer = effect.GetComponent<ParticleSystemRenderer>();
+		effect.transform.localPosition = Vector2.zero;
 
 		GetOrder();
 		GetCustomerType();
@@ -60,12 +72,6 @@ public class Customer : MonoBehaviour
 		orderRenderer.sprite = orderSprite;
 		orderRenderer.sortingLayerName = "UI";
 		orderRenderer.enabled = false;
-
-		if (valueMultiplier > 1)
-		{
-			Instantiate(effect, gameObject.transform);
-			effect.transform.localPosition = Vector2.zero;
-		}
 
 		if (timerPrefab != null)
 		{
@@ -176,6 +182,7 @@ public class Customer : MonoBehaviour
 
 		if (range >= 0 && range <= 70) {
 			float range2 = Random.Range(1, 5);
+			particleRenderer.enabled = false;
 
 			switch (range2) {
 				case 1: customerType = CustomerType.ADULT_FISHERMAN; break;
@@ -186,6 +193,7 @@ public class Customer : MonoBehaviour
 			}
 		} else if (range >= 71 && range <= 85) {
 			valueMultiplier = 1.5f;
+			particleRenderer.material = bronzeCoin;
 
 			float range2 = Random.Range(1, 2);
 
@@ -195,6 +203,7 @@ public class Customer : MonoBehaviour
 			}
 		} else if (range >= 86 && range <= 95) {
 			valueMultiplier = 2.5f;
+			particleRenderer.material = silverCoin;
 
 			float range2 = Random.Range(1, 4);
 
@@ -206,6 +215,7 @@ public class Customer : MonoBehaviour
 			}
 		} else if (range >= 96 && range <= 99) {
 			valueMultiplier = 5;
+			particleRenderer.material = goldCoin;
 
 			float range2 = Random.Range(1, 4);
 			
@@ -217,6 +227,7 @@ public class Customer : MonoBehaviour
 			}
 		} else if (range == 100) {
 			valueMultiplier = 10;
+			particleRenderer.material = trophyCoin;
 			customerType = CustomerType.KING;
 		}
 	}

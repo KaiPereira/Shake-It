@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 
 	public GameObject timerPrefab;
 	public ParticleSystem effect;
+	public Material bronzeCoin;
+	public Material silverCoin;
+	public Material goldCoin;
+	public Material trophyCoin;
 
 	public Sprite customerSprite;
 	public WaitingQueue waitingQueue;
@@ -83,7 +87,12 @@ public class GameManager : MonoBehaviour
 		Customer customer = customerObject.AddComponent<Customer>();
 
 		customer.timerPrefab = timerPrefab;
+
 		customer.effect = effect;
+		customer.bronzeCoin = bronzeCoin;
+		customer.silverCoin = silverCoin;
+		customer.goldCoin = goldCoin;
+		customer.trophyCoin = trophyCoin;
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 

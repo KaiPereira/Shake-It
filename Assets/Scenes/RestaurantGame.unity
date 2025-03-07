@@ -8670,6 +8670,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 5163611098451580973, guid: 069787c57d0afe42a9a5593ceb58faef, type: 3}
   effect: {fileID: 948570906}
+  bronzeCoin: {fileID: 2100000, guid: ef97379e2ead8c8bd84040eed06f8aac, type: 2}
+  silverCoin: {fileID: 2100000, guid: 788271b38def951a5b09225585142499, type: 2}
+  goldCoin: {fileID: 2100000, guid: 64c7be39530329691a580743e48597e6, type: 2}
   customerSprite: {fileID: -656568012, guid: c323a0123c6a9cfd1bdbb54756d63554, type: 3}
   waitingQueue: {fileID: 1054509985}
   orderManager: {fileID: 1308738305}
