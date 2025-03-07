@@ -33,6 +33,7 @@ public class Customer : MonoBehaviour
 	public Material silverCoin;
 	public Material goldCoin;
 	public Material trophyCoin;
+	public Vector3 entrancePosition;
 
 	private float valueMultiplier = 1f;
 
@@ -76,6 +77,7 @@ public class Customer : MonoBehaviour
 		if (timerPrefab != null)
 		{
 			GameObject timerInstance = Instantiate(timerPrefab, orderObject.transform);
+			timerInstance.GetComponent<Timer>().customer = this;
 
 			timerInstance.transform.localPosition = Vector2.zero;
 
@@ -149,6 +151,11 @@ public class Customer : MonoBehaviour
 		{
 			MoveToSeat();
 		}
+	}
+
+	public void LeaveRestaurant()
+	{
+		MoveTo(entrancePosition);
 	}
 
 	public void ShowOrder()

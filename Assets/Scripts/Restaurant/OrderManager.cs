@@ -52,6 +52,8 @@ public class OrderManager : MonoBehaviour
 			} else if (nextOrder.step == 1) {
 				arrowManager.UpdateArrow(player.transform.position, potPos);
 			}
+		} else {
+			arrowManager.UpdateArrow(new Vector3(100, 100, 100), new Vector3(100, 100, 100));
 		}
 	}
 

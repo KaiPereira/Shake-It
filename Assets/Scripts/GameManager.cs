@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	public int customerSpawn = 20;
 
 	public AudioSource doorbell;
+	private Vector3 spawnPosition = new Vector3(-24, -5, 0);
 
 	private void Awake()
 	{
@@ -44,13 +45,12 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		List<Vector3> waitingQueuePositionList = new List<Vector3>();
-
-		Vector3 firstPosition = new Vector3(-24, -1);
+		Vector3 entrancePosition = new Vector3(-24, -1);
 
 		float positionSize = 1f;
 
 		for (int i = 0; i < 5; i++) {
-			waitingQueuePositionList.Add(firstPosition + new Vector3(0f, -i * positionSize, 0f));
+			waitingQueuePositionList.Add(entrancePosition + new Vector3(0f, -i * positionSize, 0f));
 		}
 
 		waitingQueue.Initialize(waitingQueuePositionList);
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
 	private void CreateAndAddCustomer() {
 		GameObject customerObject = new GameObject("Customer");
 
-		Vector3 spawnPosition = new Vector3(-24, -5, 0);
 		customerObject.transform.position = spawnPosition;
 
 		Customer customer = customerObject.AddComponent<Customer>();
@@ -93,6 +92,7 @@ public class GameManager : MonoBehaviour
 		customer.silverCoin = silverCoin;
 		customer.goldCoin = goldCoin;
 		customer.trophyCoin = trophyCoin;
+		customer.entrancePosition = spawnPosition;
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 
