@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 	public WaitingQueue waitingQueue;
 	public OrderManager orderManager;
 
+	public Sprite angryFaceSprite;
+
 	public int currentStreak;
 	public int totalClicked;
 	public int totalSpawned;
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
 		customer.goldCoin = goldCoin;
 		customer.trophyCoin = trophyCoin;
 		customer.entrancePosition = spawnPosition;
+		customer.angryFaceSprite = angryFaceSprite;
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 

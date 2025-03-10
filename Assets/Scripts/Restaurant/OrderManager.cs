@@ -82,6 +82,15 @@ public class OrderManager : MonoBehaviour
 		}
 	}
 
+	public void FailOrder()
+	{
+		if (orderQueue.Count > 0)
+		{
+			Order completedOrder = orderQueue.Dequeue();
+			Debug.Log("FAILED ORDED");
+		}
+	}
+
 	public void UpdateOrderScore(float accuracy)
 	{
 		if (orderQueue.Count > 0)

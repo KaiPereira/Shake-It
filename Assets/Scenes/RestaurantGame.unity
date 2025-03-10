@@ -366,7 +366,7 @@ AudioSource:
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2113,7 +2113,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef97379e2ead8c8bd84040eed06f8aac, type: 2}
+  - {fileID: 2100000, guid: 7e2c91977def7c2b89d3acab4b7731c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8673,6 +8673,7 @@ MonoBehaviour:
   bronzeCoin: {fileID: 2100000, guid: ef97379e2ead8c8bd84040eed06f8aac, type: 2}
   silverCoin: {fileID: 2100000, guid: 788271b38def951a5b09225585142499, type: 2}
   goldCoin: {fileID: 2100000, guid: 64c7be39530329691a580743e48597e6, type: 2}
+  trophyCoin: {fileID: 2100000, guid: 7e2c91977def7c2b89d3acab4b7731c4, type: 2}
   customerSprite: {fileID: -656568012, guid: c323a0123c6a9cfd1bdbb54756d63554, type: 3}
   waitingQueue: {fileID: 1054509985}
   orderManager: {fileID: 1308738305}
@@ -12218,7 +12219,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

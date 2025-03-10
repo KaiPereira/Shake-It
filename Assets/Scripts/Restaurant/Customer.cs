@@ -16,6 +16,7 @@ public class Customer : MonoBehaviour
 	public bool isReadyToSit = false;
 
 	private SeatManager seatManager;
+	private OrderManager orderManager;
 
 	public OrderType orderType;
 	public List<Toppings> toppings = new List<Toppings>();
@@ -24,6 +25,7 @@ public class Customer : MonoBehaviour
 
 	private Sprite customerSprite;
 	private Sprite orderSprite;
+	public Sprite angryFaceSprite;
 	private RuntimeAnimatorController customerAnimationController;
 	private Animator animator;
 
@@ -43,7 +45,7 @@ public class Customer : MonoBehaviour
 		gameObject.name = "Customer " + index;
 
 		seatManager = FindObjectOfType<SeatManager>();
-
+		orderManager = FindObjectOfType<OrderManager>();
 
 		// Coin effect
 		effect = Instantiate(effect, gameObject.transform);
@@ -155,7 +157,13 @@ public class Customer : MonoBehaviour
 
 	public void LeaveRestaurant()
 	{
-		MoveTo(entrancePosition);
+		orderRenderer.sprite = angryFaceSprite;
+		timerInstanceRenderer.enabled = false;
+		orderManager.FailOrder();
+
+		MoveTo(entrancePosition, () => {
+			Destroy(gameObject);
+		});
 	}
 
 	public void ShowOrder()

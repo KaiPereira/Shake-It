@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private int timer = 10;
+    private int timer = 75;
     public bool hasFood = false;
 
     private OrderManager orderManager;
@@ -18,13 +18,10 @@ public class Timer : MonoBehaviour
 
     private IEnumerator Leaves()
     {
-        Debug.Log("STARTED MOVING");
-
         yield return new WaitForSeconds(timer);
 
         if (!hasFood)
         {
-            Debug.Log("CUSTOMER LEAVING");
             customer.LeaveRestaurant();
         }
     }
