@@ -48,8 +48,9 @@ public class Order
 	public int step;
 	public bool completed;
 	public float accuracy;
+	public float multiplier;
 
-	public Order(OrderType drinkName, List<Toppings> toppings, float timeLimit)
+	public Order(OrderType drinkName, List<Toppings> toppings, float timeLimit, float multiplier)
 	{
 		this.drinkName = drinkName;
 		this.toppings = toppings;
@@ -57,5 +58,6 @@ public class Order
 		this.step = 0;
 		this.accuracy = 0f;
 		this.completed = false;
+		this.multiplier = multiplier;
 	}
 }

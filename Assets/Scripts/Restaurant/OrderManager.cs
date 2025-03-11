@@ -10,6 +10,7 @@ public class OrderManager : MonoBehaviour
 	private Queue<Order> orderQueue = new Queue<Order>();
 	public float orderTimeLimit = 30f;
 	private ArrowManager arrowManager;
+	private ScoreManager scoreManager;
 
 	public Tilemap tilemap;
 	public TileBase blenderTile;
@@ -18,6 +19,8 @@ public class OrderManager : MonoBehaviour
 	public GameObject player;
 	private Vector3 blenderPos;
 	private Vector3 potPos;
+
+	public float base_score = 10f;
 
 	private void Awake()
 	{
@@ -34,6 +37,7 @@ public class OrderManager : MonoBehaviour
 	public void Start()
 	{
 		arrowManager = GetComponent<ArrowManager>();
+		scoreManager = FindObjectOfType<ScoreManager>();
 
 		blenderPos = GetCookingTable(blenderTile);
 		potPos = GetCookingTable(potTile);
@@ -78,6 +82,12 @@ public class OrderManager : MonoBehaviour
 		if (orderQueue.Count > 0)
 		{
 			Order completedOrder = orderQueue.Dequeue();
+
+			float avg_accuracy = completedOrder.accuracy / 2;
+			float total_score = base_score * avg_accuracy * completedOrder.multiplier;
+
+			scoreManager.UpdateScore(total_score);
+
 			Debug.Log($"Completed order: {completedOrder.drinkName} with {completedOrder.toppings}");
 		}
 	}

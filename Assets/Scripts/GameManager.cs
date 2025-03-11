@@ -106,32 +106,37 @@ public class GameManager : MonoBehaviour
 	public void RegisterCircle()
 	{
 		totalSpawned++;
-		float accuracy = (float)totalClicked / totalSpawned;
-		UpdateUI(accuracy);
+		UpdateUI(GetRhythmAccuracy());
 	}
 
 	public void RegisterHit()
 	{
 		totalClicked++;
 		currentStreak++;
-		float accuracy = (float)totalClicked / totalSpawned;
-		UpdateUI(accuracy);
+		UpdateUI(GetRhythmAccuracy());
 	}
 
 	public void RegisterMiss()
 	{
 		currentStreak = 0;
-		float accuracy = (float)totalClicked / totalSpawned;
-		UpdateUI(accuracy);
+		UpdateUI(GetRhythmAccuracy());
 	}
 
 	public void UpdateTopping(int score)
 	{
 		toppingScore = score;
 
-		float accuracy = (float)toppingScore / toppingScoreFiveStar;
+		UpdateUI(GetToppingAccuracy());
+	}
 
-		UpdateUI(accuracy);
+	public float GetToppingAccuracy()
+	{
+		return (float)toppingScore / toppingScoreFiveStar;
+	}
+	
+	public float GetRhythmAccuracy()
+	{
+		return (float)totalClicked / totalSpawned;
 	}
 
 	public void UpdateUI(float accuracy)

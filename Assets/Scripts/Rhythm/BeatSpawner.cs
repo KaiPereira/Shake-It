@@ -41,12 +41,14 @@ public class BeatDetector : MonoBehaviour
 	private LevelLoader levelLoader;
 	private OrderManager orderManager;
 	private MinigameHelper minigameHelper;
+	private GameManager gameManager;
 
 	void Start()
 	{
 		cameraShake = FindObjectOfType<CameraShake>();
 		bobaPulse = FindObjectOfType<BobaPulse>();
 		minigameHelper = FindObjectOfType<MinigameHelper>();
+		gameManager = FindObjectOfType<GameManager>();
 
 		bigBoba.enabled = false;
 
@@ -142,6 +144,7 @@ public class BeatDetector : MonoBehaviour
 		StartCoroutine(FadeOutBigBoba());
 		StartCoroutine(minigameHelper.FadeStarsToMiddle(endingDuration, middlePosition));
 
+		orderManager.UpdateOrderScore(gameManager.GetRhythmAccuracy());
 		orderManager.CompleteStep();
 
 		yield return new WaitForSeconds(4);

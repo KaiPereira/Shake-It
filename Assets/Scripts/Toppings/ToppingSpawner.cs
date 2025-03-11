@@ -110,6 +110,7 @@ public class ToppingSpawner : MonoBehaviour
 
 		StartCoroutine(minigameHelper.FadeStarsToMiddle(endingDuration, middlePosition));
 
+        orderManager.UpdateOrderScore(gameManager.GetToppingAccuracy());
 		orderManager.CompleteOrder();
 
 		yield return new WaitForSeconds(4);

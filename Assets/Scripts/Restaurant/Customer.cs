@@ -143,7 +143,7 @@ public class Customer : MonoBehaviour
 			timerInstanceRenderer.enabled = true;
 		});
 	    } else {
-		Debug.Log("No seats available");
+			Debug.Log("No seats available");
 	    }
 	}
 
@@ -189,7 +189,7 @@ public class Customer : MonoBehaviour
 			toppings.Add((Toppings)Random.Range(0, System.Enum.GetValues(typeof(Toppings)).Length));
 		}
 
-		order = new Order(orderType, toppings, 30);
+		order = new Order(orderType, toppings, 30, valueMultiplier);
 	}
 
 	private void GetCustomerType() {
