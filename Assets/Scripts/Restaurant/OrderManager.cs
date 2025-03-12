@@ -19,7 +19,7 @@ public class OrderManager : MonoBehaviour
 	public GameObject player;
 	private Vector3 blenderPos;
 	private Vector3 potPos;
-
+	
 	public float base_score = 10f;
 
 	private void Awake()
@@ -87,6 +87,10 @@ public class OrderManager : MonoBehaviour
 			float total_score = base_score * avg_accuracy * completedOrder.multiplier;
 
 			scoreManager.UpdateScore(total_score);
+
+			Customer customerScript = GameObject.Find(completedOrder.id).GetComponent<Customer>();
+
+			StartCoroutine(customerScript.GetFood());
 
 			Debug.Log($"Completed order: {completedOrder.drinkName} with {completedOrder.toppings}");
 		}

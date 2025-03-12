@@ -12,25 +12,28 @@ public class InteractionPrompt : MonoBehaviour
 	public int trigger = 0;
 
 	private bool inRange;
-	private bool rhythmGameActive;
 
 	private LevelLoader levelLoader;
+	private OrderManager orderManager;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		promptUI.SetActive(false);
 		levelLoader = FindObjectOfType<LevelLoader>();
+		orderManager = FindObjectOfType<OrderManager>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (inRange && Input.GetKeyDown(KeyCode.E) && !rhythmGameActive)
+		if (inRange && Input.GetKeyDown(KeyCode.E))
 		{
-			if (trigger == 0) {
-				StartRhythmGame();
-			} else if (trigger == 1) {
+			Order currentOrder = orderManager.GetNextOrder();
+
+			if (trigger == 0 && currentOrder.step == 0) {
+				levelLoader.LoadNextLevel("RhythmGame");
+			} else if (trigger == 1 && currentOrder.step == 1) {
 				levelLoader.LoadNextLevel("ToppingGame");
 			}
 		}
@@ -52,10 +55,5 @@ public class InteractionPrompt : MonoBehaviour
 			promptUI.SetActive(false);
 			inRange = false;
 		}
-	}
-
-	void StartRhythmGame() {
-		rhythmGameActive = true;
-		levelLoader.LoadNextLevel("RhythmGame");
 	}
 }

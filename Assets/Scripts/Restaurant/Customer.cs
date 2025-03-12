@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Customer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Customer : MonoBehaviour
 
 	public int index;
 	public float moveSpeed = 2f;
+	public int mealTime = 20;
 	private Vector3 targetPosition;
 	private bool isMoving = false;
 	public SpriteRenderer spriteRenderer;
@@ -25,7 +27,8 @@ public class Customer : MonoBehaviour
 
 	private Sprite customerSprite;
 	private Sprite orderSprite;
-	public Sprite angryFaceSprite;
+	public Sprite happyFace;
+	public Sprite angryFace;
 	private RuntimeAnimatorController customerAnimationController;
 	private Animator animator;
 
@@ -36,13 +39,23 @@ public class Customer : MonoBehaviour
 	public Material goldCoin;
 	public Material trophyCoin;
 	public Vector3 entrancePosition;
+	public Tilemap furnishingTilemap;
+	public Tilemap decorationsTilemap;
+	public TileBase bobaTile;
+
+	private GameObject timerInstance;
+
+	private string id;
 
 	private float valueMultiplier = 1f;
 
 	public void Initialize(int index)
 	{
 		this.index = index;
-		gameObject.name = "Customer " + index;
+
+		id = System.Guid.NewGuid().ToString();
+
+		gameObject.name = id;
 
 		seatManager = FindObjectOfType<SeatManager>();
 		orderManager = FindObjectOfType<OrderManager>();
@@ -78,7 +91,7 @@ public class Customer : MonoBehaviour
 
 		if (timerPrefab != null)
 		{
-			GameObject timerInstance = Instantiate(timerPrefab, orderObject.transform);
+			timerInstance = Instantiate(timerPrefab, orderObject.transform);
 			timerInstance.GetComponent<Timer>().customer = this;
 
 			timerInstance.transform.localPosition = Vector2.zero;
@@ -94,6 +107,11 @@ public class Customer : MonoBehaviour
 		orderCollider.size = new Vector2(1f, 1f);
 
 		orderObject.AddComponent<OrderBubble>();
+	}
+
+	public void Update()
+	{
+		
 	}
 
 	public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
@@ -157,9 +175,63 @@ public class Customer : MonoBehaviour
 
 	public void LeaveRestaurant()
 	{
-		orderRenderer.sprite = angryFaceSprite;
+		orderRenderer.sprite = angryFace;
 		timerInstanceRenderer.enabled = false;
 		orderManager.FailOrder();
+
+		MoveTo(entrancePosition, () => {
+			Destroy(gameObject);
+		});
+	}
+	
+	public IEnumerator GetFood()
+	{
+		orderRenderer.sprite = happyFace;
+		Destroy(timerInstance);
+
+		yield return new WaitForSeconds(5);
+		orderRenderer.enabled = false;
+
+		Vector3Int spriteTilePos = furnishingTilemap.WorldToCell(transform.position);
+
+		// Get squares up, down, left, right
+		Vector3Int up = new Vector3Int(spriteTilePos.x, spriteTilePos.y + 1, spriteTilePos.z);
+		Vector3Int down = new Vector3Int(spriteTilePos.x, spriteTilePos.y - 1, spriteTilePos.z);
+		Vector3Int left = new Vector3Int(spriteTilePos.x - 1, spriteTilePos.y, spriteTilePos.z);
+		Vector3Int right = new Vector3Int(spriteTilePos.x + 1, spriteTilePos.y, spriteTilePos.z);
+
+
+		// COULD IMPLEMENT A NO-TABLE STATEMENT HERE
+		Vector3Int direction = Vector3Int.zero;
+
+		bool ContainsTable(Vector3Int position)
+		{
+			TileBase tile = furnishingTilemap.GetTile(position);
+			return tile != null && tile.ToString().Contains("table");
+		}
+
+		if (ContainsTable(up))
+		{
+			direction = up;
+		}
+		else if (ContainsTable(down))
+		{
+			direction = down;
+		}
+		else if (ContainsTable(left))
+		{
+			direction = left;
+		}
+		else if (ContainsTable(right))
+		{
+			direction = right;
+		}
+
+		decorationsTilemap.SetTile(direction, bobaTile);
+
+		yield return new WaitForSeconds(mealTime);
+
+		decorationsTilemap.SetTile(direction, null);
 
 		MoveTo(entrancePosition, () => {
 			Destroy(gameObject);
@@ -189,7 +261,7 @@ public class Customer : MonoBehaviour
 			toppings.Add((Toppings)Random.Range(0, System.Enum.GetValues(typeof(Toppings)).Length));
 		}
 
-		order = new Order(orderType, toppings, 30, valueMultiplier);
+		order = new Order(orderType, toppings, 30, valueMultiplier, id);
 	}
 
 	private void GetCustomerType() {

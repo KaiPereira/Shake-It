@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour
 	public WaitingQueue waitingQueue;
 	public OrderManager orderManager;
 
-	public Sprite angryFaceSprite;
+	public Sprite angryFace;
+	public Sprite happyFace;
 
 	public int currentStreak;
 	public int totalClicked;
@@ -31,6 +33,10 @@ public class GameManager : MonoBehaviour
 
 	public AudioSource doorbell;
 	private Vector3 spawnPosition = new Vector3(-24, -5, 0);
+
+	public Tilemap furnishingTilemap;
+	public Tilemap decorationsTilemap;
+	public TileBase bobaTile;
 
 	private void Awake()
 	{
@@ -95,7 +101,11 @@ public class GameManager : MonoBehaviour
 		customer.goldCoin = goldCoin;
 		customer.trophyCoin = trophyCoin;
 		customer.entrancePosition = spawnPosition;
-		customer.angryFaceSprite = angryFaceSprite;
+		customer.angryFace = angryFace;
+		customer.happyFace = happyFace;
+		customer.furnishingTilemap = furnishingTilemap;
+		customer.bobaTile = bobaTile;
+		customer.decorationsTilemap = decorationsTilemap;
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 

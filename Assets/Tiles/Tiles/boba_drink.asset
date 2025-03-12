@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: neko-cafe-furnitures_23
+  m_Name: boba_drink
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1565905388, guid: db1630fc063e698dabc13dd8efee00be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 810847206fb264fc8901c4a29362a7f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
