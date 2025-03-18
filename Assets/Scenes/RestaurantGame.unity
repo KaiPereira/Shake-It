@@ -246,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &107064768
 Transform:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ AudioSource:
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2036,6 +2036,7 @@ GameObject:
   - component: {fileID: 551216626}
   - component: {fileID: 551216625}
   - component: {fileID: 551216627}
+  - component: {fileID: 551216628}
   m_Layer: 0
   m_Name: gear_button
   m_TagString: Untagged
@@ -2113,6 +2114,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
+--- !u!114 &551216628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551216623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddf3ccba5b3583bca68e0769b3d9fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customCursor: {fileID: 2800000, guid: fdb447b3808e2297ba89635c39f7fa07, type: 3}
 --- !u!1 &673760017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,6 +2338,7 @@ GameObject:
   - component: {fileID: 906076860}
   - component: {fileID: 906076859}
   - component: {fileID: 906076861}
+  - component: {fileID: 906076862}
   m_Layer: 0
   m_Name: build_button
   m_TagString: Untagged
@@ -2401,6 +2416,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
+--- !u!114 &906076862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906076857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddf3ccba5b3583bca68e0769b3d9fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customCursor: {fileID: 2800000, guid: fdb447b3808e2297ba89635c39f7fa07, type: 3}
 --- !u!1 &948570904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8882,6 +8910,7 @@ GameObject:
   - component: {fileID: 1589645590}
   - component: {fileID: 1589645589}
   - component: {fileID: 1589645591}
+  - component: {fileID: 1589645592}
   m_Layer: 0
   m_Name: upgrade_button
   m_TagString: Untagged
@@ -8959,6 +8988,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 107064767}
+--- !u!114 &1589645592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589645587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddf3ccba5b3583bca68e0769b3d9fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customCursor: {fileID: 2800000, guid: fdb447b3808e2297ba89635c39f7fa07, type: 3}
 --- !u!1 &1635383475
 GameObject:
   m_ObjectHideFlags: 0
@@ -12777,7 +12819,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
