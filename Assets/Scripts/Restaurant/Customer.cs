@@ -23,6 +23,7 @@ public class Customer : MonoBehaviour
 	public OrderType orderType;
 	public List<Toppings> toppings = new List<Toppings>();
 	public Order order;
+	public int customerLevelUpgrade = 0;
 	public CustomerType customerType;
 
 	private Sprite customerSprite;
@@ -265,7 +266,22 @@ public class Customer : MonoBehaviour
 	}
 
 	private void GetCustomerType() {
-		float range = Random.Range(0, 100);
+		int range_top = 70;
+
+		// SO JANK XD
+		if (customerLevelUpgrade == 0) {
+			range_top = 70;
+		} else if (customerLevelUpgrade == 1) {
+			range_top = 85;
+		} else if (customerLevelUpgrade == 2) {
+			range_top = 95;
+		} else if (customerLevelUpgrade == 3) {
+			range_top = 99;
+		} else {
+			range_top = 100;
+		}
+
+		float range = Random.Range(0, range_top);
 
 		if (range >= 0 && range <= 70) {
 			float range2 = Random.Range(1, 5);

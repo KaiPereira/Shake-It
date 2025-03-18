@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 	public int toppingScoreFiveStar = 12;
 
 	public int customerSpawn = 20;
+	public int customerLevelUpgrade = 0;
 
 	public AudioSource doorbell;
 	private Vector3 spawnPosition = new Vector3(-24, -5, 0);
@@ -106,6 +107,7 @@ public class GameManager : MonoBehaviour
 		customer.furnishingTilemap = furnishingTilemap;
 		customer.bobaTile = bobaTile;
 		customer.decorationsTilemap = decorationsTilemap;
+		customer.customerLevelUpgrade = customerLevelUpgrade;
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 

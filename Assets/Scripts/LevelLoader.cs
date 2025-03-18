@@ -10,6 +10,7 @@ public class LevelLoader : MonoBehaviour
     public float transitionTime = 0f;
 
     public Sound sound;
+    public GameObject uiButtons;
 
     public void LoadNextLevel(string scene)
     {
@@ -18,6 +19,8 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(string level)
     {
+        uiButtons.SetActive(false);
+
         transition.SetBool("StartTransition", true);
 
         yield return new WaitForSeconds(transitionTime);
@@ -45,6 +48,7 @@ public class LevelLoader : MonoBehaviour
         }
 
         sound.SwitchSound();
+        uiButtons.SetActive(true);
 
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
