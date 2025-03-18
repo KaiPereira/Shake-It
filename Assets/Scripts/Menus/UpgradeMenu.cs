@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour
     private GameManager gameManager;
     private ScoreManager scoreManager;
 
+    public AudioSource buySound;
+    public AudioSource errorSound;
+
     private Button _exit_button, _upgrade_customer_button;
     public VisualElement[] outlines;
     private int outline_index;
@@ -65,6 +68,8 @@ public class MainMenu : MonoBehaviour
 
         if (canUpgrade)
         {
+            buySound.Play();
+
             if (outline_index < outlines.Length)
             {
                 outline_index++;
@@ -99,6 +104,8 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator ButtonError(Button button)
     {
+        errorSound.Play();
+
         button.style.backgroundColor = Color.red;
 
         yield return new WaitForSeconds(buttonErrorLength);
