@@ -96,12 +96,21 @@ public class OrderManager : MonoBehaviour
 		}
 	}
 
-	public void FailOrder()
+	public void FailOrder(string id)
 	{
 		if (orderQueue.Count > 0)
 		{
-			Order completedOrder = orderQueue.Dequeue();
-			Debug.Log("FAILED ORDED");
+			Queue<Order> newQueue = new Queue<Order>();
+
+			foreach (Order order in orderQueue)
+			{
+				if (order.id != id)
+				{
+					newQueue.Enqueue(order);
+				}
+			}
+
+			orderQueue = newQueue;
 		}
 	}
 

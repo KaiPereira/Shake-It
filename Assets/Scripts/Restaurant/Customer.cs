@@ -65,8 +65,8 @@ public class Customer : MonoBehaviour
 		particleRenderer = effect.GetComponent<ParticleSystemRenderer>();
 		effect.transform.localPosition = Vector2.zero;
 
-		GetOrder();
 		GetCustomerType();
+		GetOrder();
 
 		SetOrderSprite();
 		SetCustomerSprite();
@@ -177,7 +177,7 @@ public class Customer : MonoBehaviour
 	{
 		orderRenderer.sprite = angryFace;
 		timerInstanceRenderer.enabled = false;
-		orderManager.FailOrder();
+		orderManager.FailOrder(gameObject.name);
 
 		MoveTo(entrancePosition, () => {
 			Destroy(gameObject);
@@ -301,7 +301,7 @@ public class Customer : MonoBehaviour
 				case 4: customerType = CustomerType.WIZARD_PURPLE; break;
 			}
 		} else if (range >= 96 && range <= 99) {
-			valueMultiplier = 5;
+			valueMultiplier = 5f;
 			particleRenderer.material = goldCoin;
 
 			float range2 = Random.Range(1, 4);
@@ -313,7 +313,7 @@ public class Customer : MonoBehaviour
 				case 4: customerType = CustomerType.MERCHANT_PURPLE; break;
 			}
 		} else if (range == 100) {
-			valueMultiplier = 10;
+			valueMultiplier = 10f;
 			particleRenderer.material = trophyCoin;
 			customerType = CustomerType.KING;
 		}

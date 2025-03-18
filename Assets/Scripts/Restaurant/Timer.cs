@@ -5,29 +5,19 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     private int timer = 75;
-    public bool hasFood = false;
 
-    private OrderManager orderManager;
     public Customer customer;
 
     void Start()
     {
         StartCoroutine(Leaves());
-        orderManager = FindObjectOfType<OrderManager>();
     }
 
+    // whole timer object gets deleted when the customer gets their food
     private IEnumerator Leaves()
     {
         yield return new WaitForSeconds(timer);
 
-        if (!hasFood)
-        {
-            customer.LeaveRestaurant();
-        }
-    }
-
-    void Update()
-    {
-        
+        customer.LeaveRestaurant();
     }
 }

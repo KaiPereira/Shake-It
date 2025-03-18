@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/UpgradesMenuStyle.uss?fileID=7433441132597879392&amp;guid=b052a03be20d1137186a372205d208fc&amp;type=3#UpgradesMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; align-items: center; justify-content: center; padding-top: 100px; padding-right: 0; padding-bottom: 50px;">
+        <ui:VisualElement class="background" style="flex-grow: 1; height: 650px; width: 65%;">
+            <ui:VisualElement class="background" style="flex-grow: 1; position: absolute; height: 70px; width: 400px; align-self: center; top: -40px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(250, 199, 71); align-items: center; justify-content: center;">
+                <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Icons/upgrade.png?fileID=21300000&amp;guid=8b22b02a950356f03b1c2da39289eb0f&amp;type=3#upgrade&quot;); height: 10px; width: 60px; align-items: auto;" />
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitMenuButton" class="ExitButton" style="font-size: 0;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Icons/close_icon.png?fileID=21300000&amp;guid=98735bb425c8efcb08b61c68bcca889c&amp;type=3#close_icon&quot;); height: 21px; width: 21px; position: relative; align-items: auto; align-self: auto; max-height: 21px; min-height: 0;" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:GroupBox name="GroupBox" style="height: 100%; padding-top: 50px; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                <ui:GroupBox style="height: 85px; width: auto;">
+                    <ui:VisualElement class="background" style="flex-grow: 1; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(250, 199, 71); flex-direction: row; justify-content: space-between; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                        <ui:GroupBox name="GroupBox" style="flex-shrink: 1; flex-grow: 1; flex-direction: row; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; justify-content: flex-start; align-items: flex-end;">
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; margin-left: 0; max-width: 25px; width: 25px; height: 25%; background-color: rgba(13, 159, 0, 0); border-left-color: rgb(13, 159, 0); border-right-color: rgb(13, 159, 0); border-top-color: rgb(13, 159, 0); border-bottom-color: rgb(13, 159, 0);" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;Customers/Kid1/Kid01_walk&apos;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; width: 25px; max-width: 25px; height: 50%;" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;Customers/Alchemist/Blue/Alchemist_blue_walk&apos;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; width: 25px; max-width: 25px; height: 75%;" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;Customers/Merchant/Green/Merchant_green_walk&apos;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; width: 25px; max-width: 25px;" />
+                            <ui:VisualElement class="customer_buy_layout" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;Customers/King/King_walk&apos;); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);" />
+                        </ui:GroupBox>
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" style="font-size: 0;">
+                            <ui:Label tabindex="-1" text="10.00" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 20px; -unity-text-align: middle-center; -unity-font-style: bold; color: rgb(255, 255, 255); align-items: auto; align-self: auto;" />
+                            <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Coin/coin_bronze.png?fileID=21300000&amp;guid=5c54583929f872f559b59d837c33eab8&amp;type=3#coin_bronze&quot;); min-width: 0; width: 25px; min-height: initial; height: 25px; max-width: 25px; margin-left: 5px;" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:GroupBox>
+            </ui:GroupBox>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
