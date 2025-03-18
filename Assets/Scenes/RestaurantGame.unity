@@ -13493,6 +13493,10 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 2065484103}
+    - target: {fileID: 7884795676328821785, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
+      propertyPath: uiButtons
+      value: 
+      objectReference: {fileID: 1400809034}
     - target: {fileID: 7913922661609734443, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0000095367
