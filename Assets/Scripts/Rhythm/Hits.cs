@@ -50,13 +50,16 @@ public class Hits : MonoBehaviour
 	}
 
 	public void OnMouseDown() {
-		wasClicked = true;
+		if (!wasClicked)
+		{
+			wasClicked = true;
 
-		FlipBoba();
+			FlipBoba();
 
-		ShowStreak();
+			ShowStreak();
 
-		gameManager.RegisterHit();
+			gameManager.RegisterHit();
+		}
 	}
 
 	void FlipBoba()

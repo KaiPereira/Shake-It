@@ -114,7 +114,7 @@ public class BeatDetector : MonoBehaviour
 			yield return null;
 		}
 
-		mainCamera.backgroundColor = beatColor; // Ensure the color is exactly the target color
+		mainCamera.backgroundColor = beatColor; 
 
 		timeElapsed = 0f;
 		while (timeElapsed < fadeDuration)
@@ -124,7 +124,7 @@ public class BeatDetector : MonoBehaviour
 			yield return null;
 		}
 
-		mainCamera.backgroundColor = originalColor; // Ensure the color is exactly the original color
+		mainCamera.backgroundColor = originalColor; 
 	}
 
 	private IEnumerator EndSequence()
