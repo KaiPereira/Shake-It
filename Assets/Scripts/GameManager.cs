@@ -67,6 +67,15 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(SpawnCustomers());
 	}
 
+	public void AddInteractionPrompt()
+	{
+		// Map over the tilemap, grab the corners of the counters and then put the prefab on it's bottom left corner
+		// Add the interactioin prompt for rhythm game
+
+
+		// Interactoin prompt for topping game
+	}
+
 	private IEnumerator SpawnCustomers()
 	{
 		while (true)
