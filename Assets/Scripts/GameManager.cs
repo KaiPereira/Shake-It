@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
 	public Tilemap decorationsTilemap;
 	public TileBase bobaTile;
 
+	public GameObject rhythmPrefab;
+	public GameObject toppingPrefab;
+
 	private void Awake()
 	{
 		if (Instance != null)
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		AddInteractionPrompt();
+
 		List<Vector3> waitingQueuePositionList = new List<Vector3>();
 		Vector3 entrancePosition = new Vector3(-24, -1);
 
@@ -70,10 +75,30 @@ public class GameManager : MonoBehaviour
 	public void AddInteractionPrompt()
 	{
 		// Map over the tilemap, grab the corners of the counters and then put the prefab on it's bottom left corner
-		// Add the interactioin prompt for rhythm game
+		BoundsInt bounds = furnishingTilemap.cellBounds;
+		TileBase[] allTiles = furnishingTilemap.GetTilesBlock(bounds);
 
+		for (int x = bounds.xMin; x < bounds.xMax; x++) {
+			for (int y = bounds.yMin; y < bounds.yMax; y++) {
+				Vector3Int tilePosition = new Vector3Int(x, y, 0);
 
-		// Interactoin prompt for topping game
+				TileBase tile = furnishingTilemap.GetTile(tilePosition);
+
+				if (tile != null) {
+					if (tile.ToString().Contains("rhythm"))
+					{
+						// Add the interactioin prompt for rhythm game
+						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
+					} else if (tile.ToString().Contains("topping")) 
+					{
+						// Interactoin prompt for topping game
+						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						Instantiate(toppingPrefab, worldPos, Quaternion.identity);
+					}
+				}
+			}
+		}
 	}
 
 	private IEnumerator SpawnCustomers()
