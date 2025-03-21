@@ -13,12 +13,10 @@ public class OrderManager : MonoBehaviour
 	private ScoreManager scoreManager;
 
 	public Tilemap tilemap;
-	public TileBase blenderTile;
-	public TileBase potTile;
 
 	public GameObject player;
-	private Vector3 blenderPos;
-	private Vector3 potPos;
+	public Vector3 rhythmPos;
+	public Vector3 toppingPos;
 	
 	public float base_score = 10f;
 
@@ -39,10 +37,6 @@ public class OrderManager : MonoBehaviour
 		arrowManager = GetComponent<ArrowManager>();
 		scoreManager = FindObjectOfType<ScoreManager>();
 
-		blenderPos = GetCookingTable(blenderTile);
-		potPos = GetCookingTable(potTile);
-
-
 		arrowManager.SpawnArrow(Vector3.zero, Vector3.zero);
 	}
 
@@ -52,9 +46,9 @@ public class OrderManager : MonoBehaviour
 
 		if (nextOrder != null) {
 			if (nextOrder.step == 0) {
-				arrowManager.UpdateArrow(player.transform.position, blenderPos);
+				arrowManager.UpdateArrow(player.transform.position, rhythmPos);
 			} else if (nextOrder.step == 1) {
-				arrowManager.UpdateArrow(player.transform.position, potPos);
+				arrowManager.UpdateArrow(player.transform.position, toppingPos);
 			}
 		} else {
 			arrowManager.UpdateArrow(new Vector3(100, 100, 100), new Vector3(100, 100, 100));
@@ -134,26 +128,5 @@ public class OrderManager : MonoBehaviour
 	public int GetOrderCount()
 	{
 		return orderQueue.Count;
-	}
-
-	private Vector3 GetCookingTable(TileBase destoTile)
-	{
-		BoundsInt bounds = tilemap.cellBounds;
-		TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-
-		for (int x = bounds.xMin; x < bounds.xMax; x++) {
-			for (int y = bounds.yMin; y < bounds.yMax; y++) {
-				Vector3Int tilePosition = new Vector3Int(x, y, 0);
-
-				TileBase tile = tilemap.GetTile(tilePosition);
-
-				if (tile == destoTile)
-				{
-					return tilemap.CellToWorld(tilePosition) + (tilemap.cellSize / 2f);
-				}
-			}
-		}
-
-		return Vector3.zero;
 	}
 }

@@ -93,12 +93,16 @@ public class GameManager : MonoBehaviour
 					{
 						// Add the interactioin prompt for rhythm game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						orderManager.rhythmPos = worldPos;
+
 						Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
 						rhythmSpot = true;
 					} else if (tile.ToString().Contains("topping") && !toppingSpot) 
 					{
 						// Interactoin prompt for topping game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						orderManager.toppingPos = worldPos;
+
 						Instantiate(toppingPrefab, worldPos, Quaternion.identity);
 						toppingSpot = true;
 					}
