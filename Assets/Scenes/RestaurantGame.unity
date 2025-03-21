@@ -12686,7 +12686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &1126185893
 Grid:
   m_ObjectHideFlags: 0
@@ -13892,7 +13892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1559390217
 Grid:
   m_ObjectHideFlags: 0
@@ -18534,8 +18534,6 @@ MonoBehaviour:
   customerSpawn: 20
   customerLevelUpgrade: 0
   doorbell: {fileID: 298182686}
-  furnishingTilemap: {fileID: 465250155}
-  decorationsTilemap: {fileID: 1036866893}
   bobaTile: {fileID: 11400000, guid: 860d6c8ff1ac14ad49acddd1f604e3d1, type: 2}
   rhythmPrefab: {fileID: 1435817842132979986, guid: 36a622fc91a93a017b22e46c0e7a7a26, type: 3}
   toppingPrefab: {fileID: 3036603345431498152, guid: f0d8795d2984c5757b61eb794eda4886, type: 3}
