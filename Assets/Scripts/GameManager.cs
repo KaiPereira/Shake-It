@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
 	public AudioSource doorbell;
 	private Vector3 spawnPosition = new Vector3(-24, -5, 0);
 
-	public Tilemap furnishingTilemap;
-	public Tilemap decorationsTilemap;
+	private Tilemap furnishingTilemap;
+	private Tilemap decorationsTilemap;
 	public TileBase bobaTile;
 
 	public GameObject rhythmPrefab;
@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		furnishingTilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
+		decorationsTilemap = GameObject.Find("Decorations").GetComponent<Tilemap>();
+
 		AddInteractionPrompt();
 
 		List<Vector3> waitingQueuePositionList = new List<Vector3>();
