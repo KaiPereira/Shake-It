@@ -5,13 +5,15 @@ using UnityEngine.Tilemaps;
 
 public class SeatManager : MonoBehaviour
 {
-	public Tilemap tilemap;
+	private Tilemap tilemap;
 
 	private List<Vector3> availableSeats = new List<Vector3>();
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		tilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
+
 		FindAllSeats();
 	}
 	
@@ -30,7 +32,7 @@ public class SeatManager : MonoBehaviour
 
 				if (tile != null && tile.ToString().Contains("seat"))
 				{
-					Vector3 worldPos = tilemap.CellToWorld(tilePosition) + new Vector3(0.5f, 0.5f, 0);
+					Vector3 worldPos = tilemap.CellToWorld(tilePosition) + new Vector3(0.5f, 1f, 0);
 					availableSeats.Add(worldPos);
 				}
 			}

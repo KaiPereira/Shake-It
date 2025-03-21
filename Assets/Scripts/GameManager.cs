@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject rhythmPrefab;
 	public GameObject toppingPrefab;
+	
+	private Vector3 queueStart;
 
 	private void Awake()
 	{
@@ -59,15 +61,16 @@ public class GameManager : MonoBehaviour
 		furnishingTilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
 		decorationsTilemap = GameObject.Find("Decorations").GetComponent<Tilemap>();
 
+		queueStart = GameObject.Find("QueueStart").transform.position;
+
 		AddInteractionPrompt();
 
 		List<Vector3> waitingQueuePositionList = new List<Vector3>();
-		Vector3 entrancePosition = new Vector3(-24, -1);
 
 		float positionSize = 1f;
 
 		for (int i = 0; i < 5; i++) {
-			waitingQueuePositionList.Add(entrancePosition + new Vector3(0f, -i * positionSize, 0f));
+			waitingQueuePositionList.Add(queueStart + new Vector3(0f, -i * positionSize, 0f));
 		}
 
 		waitingQueue.Initialize(waitingQueuePositionList);
