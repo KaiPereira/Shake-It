@@ -84,6 +84,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    private void UpgradeBuilding()
+    {
+
+    }
+
     private void FillOutlines()
     {
         for (int i = 0; i < outline_index; i++)
