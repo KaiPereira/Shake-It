@@ -61,9 +61,8 @@ public class GameManager : MonoBehaviour
 		furnishingTilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
 		decorationsTilemap = GameObject.Find("Decorations").GetComponent<Tilemap>();
 
-		queueStart = GameObject.Find("QueueStart").transform.position;
-
 		AddInteractionPrompt();
+		GetWaitingQueueStart();
 
 		List<Vector3> waitingQueuePositionList = new List<Vector3>();
 
@@ -76,6 +75,27 @@ public class GameManager : MonoBehaviour
 		waitingQueue.Initialize(waitingQueuePositionList);
 
 		StartCoroutine(SpawnCustomers());
+	}
+
+	private void GetWaitingQueueStart()
+	{
+		BoundsInt bounds = decorationsTilemap.cellBounds;
+		TileBase[] allTiles = decorationsTilemap.GetTilesBlock(bounds);
+
+		for (int x = bounds.xMin; x < bounds.xMax; x++)
+		{
+			for (int y = bounds.yMin; y < bounds.yMax; y++)
+			{
+				Vector3Int tilePosition = new Vector3Int(x, y, 0);
+
+				TileBase tile = decorationsTilemap.GetTile(tilePosition);
+
+				if (tile != null && tile.ToString().Contains("cash"))
+				{
+					queueStart = decorationsTilemap.CellToWorld(tilePosition) + new Vector3(0.5f, -0.25f, 0);
+				}
+			}
+		}
 	}
 
 	public void AddInteractionPrompt()
