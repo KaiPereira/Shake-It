@@ -74,6 +74,10 @@ public class GameManager : MonoBehaviour
 
 	public void AddInteractionPrompt()
 	{
+		// To Prevent duplicate spots
+		bool rhythmSpot = false;
+		bool toppingSpot = false;
+
 		// Map over the tilemap, grab the corners of the counters and then put the prefab on it's bottom left corner
 		BoundsInt bounds = furnishingTilemap.cellBounds;
 		TileBase[] allTiles = furnishingTilemap.GetTilesBlock(bounds);
@@ -85,16 +89,18 @@ public class GameManager : MonoBehaviour
 				TileBase tile = furnishingTilemap.GetTile(tilePosition);
 
 				if (tile != null) {
-					if (tile.ToString().Contains("rhythm"))
+					if (tile.ToString().Contains("rhythm") && !rhythmSpot)
 					{
 						// Add the interactioin prompt for rhythm game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
 						Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
-					} else if (tile.ToString().Contains("topping")) 
+						rhythmSpot = true;
+					} else if (tile.ToString().Contains("topping") && !toppingSpot) 
 					{
 						// Interactoin prompt for topping game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
 						Instantiate(toppingPrefab, worldPos, Quaternion.identity);
+						toppingSpot = true;
 					}
 				}
 			}

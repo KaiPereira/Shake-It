@@ -41,16 +41,24 @@ public class InteractionPrompt : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player") && orderManager.GetNextOrder() != null)
+		Order currentOrder = orderManager.GetNextOrder();
+
+		if (other.CompareTag("Player") && currentOrder != null)
 		{
-			promptUI.SetActive(true);
-			inRange = true;
+			if (trigger == 0 && currentOrder.step == 0) {
+				promptUI.SetActive(true);
+				inRange = true;
+			} else if (trigger == 1 && currentOrder.step == 1)
+			{
+				promptUI.SetActive(true);
+				inRange = true;
+			} 
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.CompareTag("Player") && orderManager.GetNextOrder() != null)
+		if (other.CompareTag("Player"))
 		{
 			promptUI.SetActive(false);
 			inRange = false;
