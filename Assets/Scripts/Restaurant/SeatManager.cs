@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 public class SeatManager : MonoBehaviour
 {
 	public Tilemap tilemap;
-	public TileBase seatTile;
 
 	private List<Vector3> availableSeats = new List<Vector3>();
 
@@ -29,7 +28,7 @@ public class SeatManager : MonoBehaviour
 
 				TileBase tile = tilemap.GetTile(tilePosition);
 
-				if (tile == seatTile)
+				if (tile != null && tile.ToString().Contains("seat"))
 				{
 					Vector3 worldPos = tilemap.CellToWorld(tilePosition) + new Vector3(0.5f, 0.5f, 0);
 					availableSeats.Add(worldPos);
