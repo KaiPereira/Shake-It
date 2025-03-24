@@ -110,11 +110,6 @@ public class Customer : MonoBehaviour
 		orderObject.AddComponent<OrderBubble>();
 	}
 
-	public void Update()
-	{
-		
-	}
-
 	public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
 	{
 		targetPosition = target;
@@ -151,13 +146,15 @@ public class Customer : MonoBehaviour
 	public void MoveToSeat() {
 		Vector3 nextAvailableSeat = seatManager.GetNextAvailableSeat();
 
+		Vector3 nextAvailableSeatModified = new Vector3(nextAvailableSeat.x, nextAvailableSeat.y - 0.01f,nextAvailableSeat.z);
+
 		if (nextAvailableSeat != Vector3.zero) {
 		HideOrder();
 
 		WaitingQueue waitingQueue = FindObjectOfType<WaitingQueue>();
 		waitingQueue.RemoveCustomerAndShift(this);
 
-		MoveTo(nextAvailableSeat, () => {
+		MoveTo(nextAvailableSeatModified, () => {
 			orderRenderer.enabled = true;
 			timerInstanceRenderer.enabled = true;
 		});

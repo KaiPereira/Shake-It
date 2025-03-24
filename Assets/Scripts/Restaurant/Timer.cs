@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private int timer = 75;
+    private int timer = 150;
 
     public Customer customer;
 

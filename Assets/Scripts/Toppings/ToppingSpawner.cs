@@ -26,6 +26,8 @@ public class ToppingSpawner : MonoBehaviour
     public AudioSource completionAudioSource;
     public Transform middlePosition;
 
+    private List<GameObject> spawnedToppings = new List<GameObject>();
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -55,7 +57,9 @@ public class ToppingSpawner : MonoBehaviour
             int prefabIndex = Random.Range(0, 7);
             Vector3 randomPos = new Vector3(Random.Range(-7, 7), 3, 0);
 
-            Instantiate(prefabList[prefabIndex], randomPos, Quaternion.identity);
+            GameObject newTopping = Instantiate(prefabList[prefabIndex], randomPos, Quaternion.identity);
+
+            spawnedToppings.Add(newTopping);
 
             // Gets faster and faster
             if (speed > 0.3f)
@@ -115,5 +119,18 @@ public class ToppingSpawner : MonoBehaviour
 
 		yield return new WaitForSeconds(4);
 		StartCoroutine(levelLoader.UnloadAdditiveScene());
+        DestroyAllToppings();
+    }
+
+    private void DestroyAllToppings()
+    {
+        foreach (GameObject topping in spawnedToppings)
+        {
+            if (topping != null)
+            {
+                Destroy(topping);
+            }
+        }
+        spawnedToppings.Clear();
     }
 }
