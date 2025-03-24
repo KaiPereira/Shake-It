@@ -333,16 +333,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4c0ea4265a97763bfdcb9aa79a193c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerPrefab: {fileID: 0}
+  effect: {fileID: 0}
+  bronzeCoin: {fileID: 0}
+  silverCoin: {fileID: 0}
+  goldCoin: {fileID: 0}
+  trophyCoin: {fileID: 0}
   customerSprite: {fileID: 0}
-  customerAnimator: {fileID: 0}
   waitingQueue: {fileID: 0}
   orderManager: {fileID: 0}
+  angryFace: {fileID: 0}
+  happyFace: {fileID: 0}
   currentStreak: 0
   totalClicked: 0
   totalSpawned: 0
   toppingScore: 0
   toppingScoreFiveStar: 12
+  customerSpawn: 20
+  customerLevelUpgrade: 0
   doorbell: {fileID: 0}
+  bobaTile: {fileID: 0}
+  rhythmPrefab: {fileID: 0}
+  toppingPrefab: {fileID: 0}
 --- !u!4 &1091124334
 Transform:
   m_ObjectHideFlags: 0
@@ -1726,7 +1738,7 @@ MonoBehaviour:
   audioSource: {fileID: 1233098417}
   circlePrefab: {fileID: 2574898437695309971, guid: db808d56033ec786ebc99fbd5d78e99d, type: 3}
   spawnArea: {fileID: 1365884839}
-  sensitivity: 0.01
+  sensitivity: 0.000001
   timeBetweenBeats: 0.5
   musicLength: 15
   mainCamera: {fileID: 923707444}

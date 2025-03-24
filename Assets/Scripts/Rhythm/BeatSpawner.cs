@@ -15,7 +15,7 @@ public class BeatDetector : MonoBehaviour
 	private bool hasEnded = false;
 
 	private float lastPeak = 0f;
-	private float[] samples = new float[512];
+	float[] samples = new float[256];
 
 	public Camera mainCamera;
 	public Color originalColor;
@@ -43,7 +43,6 @@ public class BeatDetector : MonoBehaviour
 	private MinigameHelper minigameHelper;
 	private GameManager gameManager;
 
-	private int frameSkip = 0;
 	private const int skipInterval = 3;
 	private bool isFading = false;
 
@@ -68,11 +67,11 @@ public class BeatDetector : MonoBehaviour
 
 	void Update()
 	{
+		float startTime = Time.realtimeSinceStartup;
+
 		if (!gameStarted) return;
 
-		frameSkip++;
-
-		if (frameSkip % skipInterval != 0) return;
+		if (Time.frameCount % skipInterval != 0) return;
 
 		audioSource.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
 		float sum = 0;
@@ -90,12 +89,15 @@ public class BeatDetector : MonoBehaviour
 			bobaPulse.Pulse();
 			lastPeak = Time.time;
 		}
+
+		Debug.Log("Update took: " + (Time.realtimeSinceStartup - startTime) + " seconds");
 	}
 
 	void SpawnCircle()
 	{
 		Vector3 randomPos = GetRandomPosition();
-		Instantiate(circlePrefab, randomPos, Quaternion.identity);
+		GameObject circle = Instantiate(circlePrefab, randomPos, Quaternion.identity);
+		Destroy(circle, 5f);
 	}
 
 	Vector3 GetRandomPosition()
