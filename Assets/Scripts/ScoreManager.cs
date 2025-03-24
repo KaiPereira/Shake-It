@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScore(float amount)
     {
         score += amount;
-        score = (float)System.Math.Round(score, 2);
+        RoundScore();
 
         UpdateUI();
     }
@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
         score -= cost;
 
         UpdateUI();
+        RoundScore();
 
         return true;
     }
@@ -30,5 +31,11 @@ public class ScoreManager : MonoBehaviour
     public void UpdateUI()
     {
         scoreText.SetText(score.ToString());
+        RoundScore();
+    }
+
+    private void RoundScore()
+    {
+        score = (float)System.Math.Round(score, 2);
     }
 }

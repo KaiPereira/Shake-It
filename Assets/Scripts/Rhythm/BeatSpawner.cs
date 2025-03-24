@@ -43,6 +43,10 @@ public class BeatDetector : MonoBehaviour
 	private MinigameHelper minigameHelper;
 	private GameManager gameManager;
 
+	private int frameSkip = 0;
+	private const int skipInterval = 3;
+	private bool isFading = false;
+
 	void Start()
 	{
 		cameraShake = FindObjectOfType<CameraShake>();
@@ -64,24 +68,27 @@ public class BeatDetector : MonoBehaviour
 
 	void Update()
 	{
-		if (gameStarted)
+		if (!gameStarted) return;
+
+		frameSkip++;
+
+		if (frameSkip % skipInterval != 0) return;
+
+		audioSource.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
+		float sum = 0;
+
+		foreach (float sample in samples)
 		{
-			audioSource.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
-			float sum = 0;
+			sum += sample;
+		}
 
-			for (int i = 0; i < samples.Length; i++)
-			{
-				sum += samples[i];
-			}
-
-			if (sum > lastPeak * sensitivity && Time.time - lastPeak > timeBetweenBeats)
-			{
-				SpawnCircle();
-				StartCoroutine(FadeBackgroundColor());
-				cameraShake.TriggerShake();
-				bobaPulse.Pulse();
-				lastPeak = Time.time;
-			}
+		if (sum > lastPeak * sensitivity && Time.time - lastPeak > timeBetweenBeats)
+		{
+			SpawnCircle();
+			if (!isFading) StartCoroutine(FadeBackgroundColor());
+			cameraShake.TriggerShake();
+			bobaPulse.Pulse();
+			lastPeak = Time.time;
 		}
 	}
 
