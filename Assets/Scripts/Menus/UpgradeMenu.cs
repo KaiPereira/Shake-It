@@ -17,21 +17,20 @@ public class MainMenu : MonoBehaviour
     public AudioSource buySound;
     public AudioSource errorSound;
 
-    /*private Button _exit_button, _upgrade_customer_button;
-    public VisualElement[] outlines;
-    private int outline_index;
-    public Color customerUpgradeColor;
-    public float[] customerUpgradePrices = {5f, 15f, 35f, 50f};
+    private float buttonErrorLength = 0.25f;
 
-    private float buttonErrorLength = 0.25f;*/
+    public Color successColor;
+    public Color errorColor;
 
     [System.Serializable]
     public class Upgrade
     {
         public VisualElement[] outlines;
         public float[] upgradePrices;
-        public int currentLevel;
+        public int currentLevel = 0;
         public System.Action<int> onUpgradeAction;
+        public Button upgradeButton;
+        public Label upgradeText;
     }
 
     public List<Upgrade> upgrades = new List<Upgrade>();
@@ -56,6 +55,20 @@ public class MainMenu : MonoBehaviour
             var upgradeElement = upgradeTemplate.CloneTree();
 
             upgradeContainer.Add(upgradeElement);
+
+            // Get button, outlines, sprites
+            upgrade.upgradeButton = upgradeElement.Q<Button>("UpgradeButton");
+            upgrade.upgradeText = upgradeElement.Q<Label>("UpgradeText");
+
+            upgrade.outlines =new VisualElement[4]
+            {
+                root.Q<VisualElement>("outline1"),
+                root.Q<VisualElement>("outline2"),
+                root.Q<VisualElement>("outline3"),
+                root.Q<VisualElement>("outline4")
+            };
+
+            upgrade.upgradeButton.RegisterCallback<ClickEvent>(evt => PerformUpgrade(upgrade));
         }
     }
 
@@ -68,6 +81,49 @@ public class MainMenu : MonoBehaviour
     {
         gameObject.SetActive(false);
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    private void PerformUpgrade(Upgrade upgrade)
+    {
+        bool canUpgrade = scoreManager.BuyUpgrade(upgrade.upgradePrices[upgrade.currentLevel]);
+
+        if (canUpgrade)
+        {
+            buySound.Play();
+
+            if (upgrade.currentLevel < upgrade.outlines.Length)
+            {
+                upgrade.currentLevel++;
+            }
+
+            // Change the price
+            if (upgrade.currentLevel == upgrade.outlines.Length) {
+                upgrade.upgradeText.text = "max"; 
+            } else {
+                upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+            }
+
+            // Fill the outlines
+            for (int i = 0; i < upgrade.currentLevel; i++)
+            {
+                upgrade.outlines[i].style.backgroundColor = successColor;
+            }
+
+            gameManager.customerLevelUpgrade = upgrade.currentLevel;
+        } else {
+            StartCoroutine(ButtonError(upgrade));
+        }
+    }
+
+    private IEnumerator ButtonError(Upgrade upgrade)
+    {
+        errorSound.Play();
+
+        upgrade.upgradeButton.style.backgroundColor = errorColor;
+
+        yield return new WaitForSeconds(buttonErrorLength);
+
+        upgrade.upgradeButton.style.backgroundColor = successColor;
     }
 
     /*private void OnEnable()
@@ -90,36 +146,6 @@ public class MainMenu : MonoBehaviour
         CustomerUpgradePrice();
     }
 
-
-
-
-
-
-
-
-
-    private void UpgradeCustomer(ClickEvent evt)
-    {
-        bool canUpgrade = scoreManager.BuyUpgrade(customerUpgradePrices[outline_index]);
-
-        if (canUpgrade)
-        {
-            buySound.Play();
-
-            if (outline_index < outlines.Length)
-            {
-                outline_index++;
-            }
-
-            FillOutlines();
-            CustomerUpgradePrice();
-
-            gameManager.customerLevelUpgrade = outline_index;
-        } else {
-            StartCoroutine(ButtonError(_upgrade_customer_button));
-        }
-    }
-
     private void UpgradeBuilding()
     {
 
@@ -135,22 +161,7 @@ public class MainMenu : MonoBehaviour
 
     private void CustomerUpgradePrice()
     {
-        var upgradeButtonText = _upgrade_customer_button.Q<Label>();
-        if (outline_index == outlines.Length) {
-            upgradeButtonText.text = "max"; 
-        } else {
-            upgradeButtonText.text = customerUpgradePrices[outline_index].ToString();
-        }
     }
 
-    private IEnumerator ButtonError(Button button)
-    {
-        errorSound.Play();
-
-        button.style.backgroundColor = Color.red;
-
-        yield return new WaitForSeconds(buttonErrorLength);
-
-        button.style.backgroundColor = customerUpgradeColor;
-    }*/
+    */
 }

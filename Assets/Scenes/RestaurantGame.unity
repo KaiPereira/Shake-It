@@ -186,6 +186,8 @@ MonoBehaviour:
   upgradeTemplate: {fileID: 9197481963319205126, guid: e520dd1887baec11d86cd0c272ca34d3, type: 3}
   buySound: {fileID: 1939518654}
   errorSound: {fileID: 1265977849}
+  successColor: {r: 0.050980393, g: 0.62352943, b: 0, a: 1}
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
   upgrades:
   - upgradePrices:
     - 10
