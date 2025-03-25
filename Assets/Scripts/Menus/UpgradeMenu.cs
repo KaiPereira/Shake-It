@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
         public float[] upgradePrices;
         public int currentLevel = 0;
         public System.Action<int> onUpgradeAction;
+        public Sprite[] sprites;
         public Button upgradeButton;
         public Label upgradeText;
     }
@@ -60,12 +61,26 @@ public class MainMenu : MonoBehaviour
             upgrade.upgradeButton = upgradeElement.Q<Button>("UpgradeButton");
             upgrade.upgradeText = upgradeElement.Q<Label>("UpgradeText");
 
-            upgrade.outlines =new VisualElement[4]
+            upgrade.outlines = new VisualElement[4]
             {
-                root.Q<VisualElement>("outline1"),
-                root.Q<VisualElement>("outline2"),
-                root.Q<VisualElement>("outline3"),
-                root.Q<VisualElement>("outline4")
+                upgradeElement.Q<VisualElement>("outline1"),
+                upgradeElement.Q<VisualElement>("outline2"),
+                upgradeElement.Q<VisualElement>("outline3"),
+                upgradeElement.Q<VisualElement>("outline4")
+            };
+
+            var sprites = new VisualElement[4]
+            {
+                upgradeElement.Q<VisualElement>("sprite1"),
+                upgradeElement.Q<VisualElement>("sprite2"),
+                upgradeElement.Q<VisualElement>("sprite3"),
+                upgradeElement.Q<VisualElement>("sprite4")
+            };
+
+            // Set all the sprites
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].style.backgroundImage = new StyleBackground(upgrade.sprites[i]);
             };
 
             upgrade.upgradeButton.RegisterCallback<ClickEvent>(evt => PerformUpgrade(upgrade));
