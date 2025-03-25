@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
     public Color successColor;
     public Color errorColor;
 
+    public enum UpgradeTypes {
+        CUSTOMER,
+        RESTAURANT
+    }
+
     [System.Serializable]
     public class Upgrade
     {
@@ -32,6 +37,7 @@ public class MainMenu : MonoBehaviour
         public Sprite[] sprites;
         public Button upgradeButton;
         public Label upgradeText;
+        public UpgradeTypes upgradeType;
     }
 
     public List<Upgrade> upgrades = new List<Upgrade>();
@@ -124,6 +130,18 @@ public class MainMenu : MonoBehaviour
                 upgrade.outlines[i].style.backgroundColor = successColor;
             }
 
+            // Run the custom upgrade function
+            switch (upgrade.upgradeType)
+            {
+                case UpgradeTypes.CUSTOMER:
+                    break;
+                case UpgradeTypes.RESTAURANT:
+                    break;
+                default:
+                    Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD
+                    break;
+            }
+
             gameManager.customerLevelUpgrade = upgrade.currentLevel;
         } else {
             StartCoroutine(ButtonError(upgrade));
@@ -140,43 +158,4 @@ public class MainMenu : MonoBehaviour
 
         upgrade.upgradeButton.style.backgroundColor = successColor;
     }
-
-    /*private void OnEnable()
-    {
-        var root = _document.rootVisualElement;
-        _upgrade_customer_button = root.Q<Button>("UpgradeCustomers");
-
-        _exit_button.RegisterCallback<ClickEvent>(ExitMenuClick);
-        _upgrade_customer_button.RegisterCallback<ClickEvent>(UpgradeCustomer);
-
-        outlines = new VisualElement[4]
-        {
-            root.Q<VisualElement>("outline1"),
-            root.Q<VisualElement>("outline2"),
-            root.Q<VisualElement>("outline3"),
-            root.Q<VisualElement>("outline4")
-        };
-
-        FillOutlines();
-        CustomerUpgradePrice();
-    }
-
-    private void UpgradeBuilding()
-    {
-
-    }
-
-    private void FillOutlines()
-    {
-        for (int i = 0; i < outline_index; i++)
-        {
-            outlines[i].style.backgroundColor = customerUpgradeColor;
-        }
-    }
-
-    private void CustomerUpgradePrice()
-    {
-    }
-
-    */
 }
