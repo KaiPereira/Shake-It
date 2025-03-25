@@ -7,6 +7,9 @@ using Cursor = UnityEngine.Cursor;
 public class MainMenu : MonoBehaviour
 {
     private UIDocument _document;
+    private Button _exit_button;
+    public VisualTreeAsset upgradeTemplate;
+    private VisualElement upgradeContainer;
 
     private GameManager gameManager;
     private ScoreManager scoreManager;
@@ -14,13 +17,24 @@ public class MainMenu : MonoBehaviour
     public AudioSource buySound;
     public AudioSource errorSound;
 
-    private Button _exit_button, _upgrade_customer_button;
+    /*private Button _exit_button, _upgrade_customer_button;
     public VisualElement[] outlines;
     private int outline_index;
     public Color customerUpgradeColor;
     public float[] customerUpgradePrices = {5f, 15f, 35f, 50f};
 
-    private float buttonErrorLength = 0.25f;
+    private float buttonErrorLength = 0.25f;*/
+
+    [System.Serializable]
+    public class Upgrade
+    {
+        public VisualElement[] outlines;
+        public float[] upgradePrices;
+        public int currentLevel;
+        public System.Action<int> onUpgradeAction;
+    }
+
+    public List<Upgrade> upgrades = new List<Upgrade>();
 
     private void Awake()
     {
@@ -33,6 +47,32 @@ public class MainMenu : MonoBehaviour
     {
         var root = _document.rootVisualElement;
         _exit_button = root.Q<Button>("ExitMenuButton");
+        upgradeContainer = root.Q<GroupBox>("UpgradesContainer");
+
+        _exit_button.RegisterCallback<ClickEvent>(ExitMenuClick);
+
+        foreach (Upgrade upgrade in upgrades)
+        {
+            var upgradeElement = upgradeTemplate.CloneTree();
+
+            upgradeContainer.Add(upgradeElement);
+        }
+    }
+
+    private void OnDisable()
+    {
+        _exit_button.UnregisterCallback<ClickEvent>(ExitMenuClick);
+    }
+
+    private void ExitMenuClick(ClickEvent evt)
+    {
+        gameObject.SetActive(false);
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    /*private void OnEnable()
+    {
+        var root = _document.rootVisualElement;
         _upgrade_customer_button = root.Q<Button>("UpgradeCustomers");
 
         _exit_button.RegisterCallback<ClickEvent>(ExitMenuClick);
@@ -50,17 +90,13 @@ public class MainMenu : MonoBehaviour
         CustomerUpgradePrice();
     }
 
-    private void OnDisable()
-    {
-        _exit_button.UnregisterCallback<ClickEvent>(ExitMenuClick);
-        _upgrade_customer_button.UnregisterCallback<ClickEvent>(UpgradeCustomer);
-    }
 
-    private void ExitMenuClick(ClickEvent evt)
-    {
-        gameObject.SetActive(false);
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-    }
+
+
+
+
+
+
 
     private void UpgradeCustomer(ClickEvent evt)
     {
@@ -116,5 +152,5 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(buttonErrorLength);
 
         button.style.backgroundColor = customerUpgradeColor;
-    }
+    }*/
 }

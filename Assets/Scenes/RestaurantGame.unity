@@ -183,14 +183,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3482421ef271b72997a3befcca214f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeTemplate: {fileID: 9197481963319205126, guid: e520dd1887baec11d86cd0c272ca34d3, type: 3}
   buySound: {fileID: 1939518654}
   errorSound: {fileID: 1265977849}
-  customerUpgradeColor: {r: 0.019607844, g: 0.7254902, b: 0, a: 1}
-  customerUpgradePrices:
-  - 5
-  - 15
-  - 35
-  - 50
+  upgrades:
+  - upgradePrices:
+    - 10
+    - 15
+    - 20
+    - 30
+    currentLevel: 0
 --- !u!1 &120120779
 GameObject:
   m_ObjectHideFlags: 0
