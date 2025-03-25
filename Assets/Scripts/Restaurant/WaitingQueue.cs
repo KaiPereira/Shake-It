@@ -37,8 +37,6 @@ public class WaitingQueue : MonoBehaviour
 	}
 
 	public void RemoveCustomerAndShift(Customer customer) {
-		//if (!customerList.Contains(customer)) return;
-
 		customerList.Remove(customer);
 
 		for (int i = 0; i < customerList.Count; i++) {
@@ -51,6 +49,6 @@ public class WaitingQueue : MonoBehaviour
 
 	public void ClearQueue()
 	{
-
+		customerList.Clear();
 	}
 }

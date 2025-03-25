@@ -129,4 +129,16 @@ public class OrderManager : MonoBehaviour
 	{
 		return orderQueue.Count;
 	}
+
+	public void ClearOrders()
+	{
+		foreach (Order order in orderQueue)
+		{
+			GameObject customer = GameObject.Find(order.id);
+
+			Destroy(customer);
+		}
+
+		orderQueue.Clear();
+	}
 }
