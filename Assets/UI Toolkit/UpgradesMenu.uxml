@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="upgrade" src="project://database/Assets/Templates/upgrade.uxml?fileID=9197481963319205126&amp;guid=e520dd1887baec11d86cd0c272ca34d3&amp;type=3#upgrade" />
     <Style src="project://database/Assets/UI%20Toolkit/UpgradesMenuStyle.uss?fileID=7433441132597879392&amp;guid=b052a03be20d1137186a372205d208fc&amp;type=3#UpgradesMenuStyle" />
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; align-items: center; justify-content: center; padding-top: 100px; padding-right: 0; padding-bottom: 50px;">
         <ui:VisualElement class="background" style="flex-grow: 1; height: 650px; width: 65%;">
@@ -9,9 +8,7 @@
                     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Icons/close_icon.png?fileID=21300000&amp;guid=98735bb425c8efcb08b61c68bcca889c&amp;type=3#close_icon&quot;); height: 21px; width: 21px; position: relative; align-items: auto; align-self: auto; max-height: 21px; min-height: 0; cursor: url(&quot;project://database/Assets/UI/Cursors/cursor.png?fileID=2800000&amp;guid=fdb447b3808e2297ba89635c39f7fa07&amp;type=3#cursor&quot;);" />
                 </ui:Button>
             </ui:VisualElement>
-            <ui:GroupBox name="UpgradesContainer" style="height: 100%; padding-top: 50px; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
-                <ui:Instance template="upgrade" name="upgrade" />
-            </ui:GroupBox>
+            <ui:GroupBox name="UpgradesContainer" style="height: 100%; padding-top: 50px; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
