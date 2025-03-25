@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
 	public int customerSpawn = 20;
 	public int customerLevelUpgrade = 0;
+	public int restaurantLevel = 0;
 
 	public AudioSource doorbell;
 	private Vector3 spawnPosition = new Vector3(-24, -5, 0);
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject rhythmPrefab;
 	public GameObject toppingPrefab;
+
+	public GameObject[] restaurants;
 	
 	private Vector3 queueStart;
 
@@ -249,5 +252,22 @@ public class GameManager : MonoBehaviour
 				count++;
 			}
 		}
+	}
+
+	public void UpgradeRestaurant()
+	{
+		if (restaurantLevel < 4)
+		{
+			restaurantLevel += 1;
+
+			for (int i = 0; i < restaurantLevel; i++) {
+				restaurants[i].SetActive(false);
+			}
+
+			restaurants[restaurantLevel].SetActive(true);
+
+			// Clear all customers too
+			// Add a beginner room
+		};
 	}
 }

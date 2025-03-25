@@ -196,10 +196,11 @@ MonoBehaviour:
     - 30
     currentLevel: 0
     sprites:
-    - {fileID: 21300000, guid: 2f1dc630652617c4faa80b16ce51a2c9, type: 3}
-    - {fileID: 21300000, guid: c4f4663c821ab529abdd50301ccf182f, type: 3}
-    - {fileID: 21300000, guid: 1383f12529a083198b160c29fcc23186, type: 3}
-    - {fileID: 21300000, guid: 32c71457f903d4840ae5855f494cc89c, type: 3}
+    - {fileID: 298143940, guid: 00fc100d124e49e21b9db518b53686bd, type: 3}
+    - {fileID: -1054903177, guid: 88b58f3e27ddf9a90a689c896d04143e, type: 3}
+    - {fileID: 1082177291, guid: fcf4244c542b719448b10a138c183b14, type: 3}
+    - {fileID: 664319446, guid: 7b98d92fe6bf8cff9b4b144c2ead74dd, type: 3}
+    upgradeType: 0
 --- !u!1 &120120779
 GameObject:
   m_ObjectHideFlags: 0
@@ -12453,6 +12454,7 @@ MonoBehaviour:
   toppingScoreFiveStar: 12
   customerSpawn: 20
   customerLevelUpgrade: 0
+  restaurantLevel: 0
   doorbell: {fileID: 298182686}
   bobaTile: {fileID: 11400000, guid: 860d6c8ff1ac14ad49acddd1f604e3d1, type: 2}
   rhythmPrefab: {fileID: 1435817842132979986, guid: 36a622fc91a93a017b22e46c0e7a7a26, type: 3}

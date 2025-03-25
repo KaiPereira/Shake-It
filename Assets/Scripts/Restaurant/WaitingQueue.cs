@@ -7,7 +7,7 @@ public class WaitingQueue : MonoBehaviour
 {
 	public static WaitingQueue Instance;
 
-	public List<Customer> customerList;
+	public List<Customer> customerList = new List<Customer>();
 	private List<Vector3> positionList;
 	private Vector3 entrancePosition;
 	private SeatManager seatManager;
@@ -16,7 +16,6 @@ public class WaitingQueue : MonoBehaviour
 		this.positionList = positionList;
 		entrancePosition = positionList[positionList.Count - 1];
 
-		customerList = new List<Customer>();
 		seatManager = FindObjectOfType<SeatManager>();
 	}
 
@@ -48,5 +47,10 @@ public class WaitingQueue : MonoBehaviour
 			customerList[i].index = i;
 			customerList[i].spriteRenderer.sortingOrder = i;
 		}
+	}
+
+	public void ClearQueue()
+	{
+
 	}
 }

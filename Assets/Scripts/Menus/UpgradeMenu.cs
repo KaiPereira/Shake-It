@@ -134,15 +134,16 @@ public class MainMenu : MonoBehaviour
             switch (upgrade.upgradeType)
             {
                 case UpgradeTypes.CUSTOMER:
+                    gameManager.customerLevelUpgrade = upgrade.currentLevel;
                     break;
                 case UpgradeTypes.RESTAURANT:
+                    gameManager.UpgradeRestaurant();
                     break;
                 default:
                     Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD
                     break;
             }
 
-            gameManager.customerLevelUpgrade = upgrade.currentLevel;
         } else {
             StartCoroutine(ButtonError(upgrade));
         }
