@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public Sprite customerSprite;
 	public WaitingQueue waitingQueue;
 	public OrderManager orderManager;
+	public SeatManager seatManager;
 
 	public Sprite angryFace;
 	public Sprite happyFace;
@@ -63,6 +64,8 @@ public class GameManager : MonoBehaviour
 	{
 		furnishingTilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
 		decorationsTilemap = GameObject.Find("Decorations").GetComponent<Tilemap>();
+
+		seatManager = GetComponent<SeatManager>();
 
 		AddInteractionPrompt();
 		GetWaitingQueueStart();
@@ -267,6 +270,10 @@ public class GameManager : MonoBehaviour
 			restaurants[restaurantLevel].SetActive(true);
 
 			// Clear all customers too
+			seatManager.FindAllSeats();
+			waitingQueue.ClearQueue();
+			orderManager.ClearOrders();
+
 			// Add a beginner room
 		};
 	}

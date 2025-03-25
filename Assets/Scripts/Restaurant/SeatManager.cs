@@ -17,7 +17,7 @@ public class SeatManager : MonoBehaviour
 		FindAllSeats();
 	}
 	
-	private void FindAllSeats()
+	public void FindAllSeats()
 	{
 		availableSeats.Clear();
 
