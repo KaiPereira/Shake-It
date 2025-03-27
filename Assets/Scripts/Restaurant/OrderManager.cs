@@ -132,13 +132,6 @@ public class OrderManager : MonoBehaviour
 
 	public void ClearOrders()
 	{
-		foreach (Order order in orderQueue)
-		{
-			GameObject customer = GameObject.Find(order.id);
-
-			Destroy(customer);
-		}
-
 		orderQueue.Clear();
 	}
 }

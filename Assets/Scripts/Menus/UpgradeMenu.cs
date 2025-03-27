@@ -67,6 +67,8 @@ public class MainMenu : MonoBehaviour
             upgrade.upgradeButton = upgradeElement.Q<Button>("UpgradeButton");
             upgrade.upgradeText = upgradeElement.Q<Label>("UpgradeText");
 
+            upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+
             upgrade.outlines = new VisualElement[4]
             {
                 upgradeElement.Q<VisualElement>("outline1"),

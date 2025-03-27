@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 	public GameObject toppingPrefab;
 
 	public GameObject[] restaurants;
+	public List<Customer> customers = new List<Customer>();
 	
 	private Vector3 queueStart;
 
@@ -187,6 +188,8 @@ public class GameManager : MonoBehaviour
 
 		customer.Initialize(waitingQueue.CanAddCustomer() ? waitingQueue.customerList.Count : 0);
 
+		customers.Add(customer);
+
 		waitingQueue.AddCustomer(customer);
 	}
 
@@ -273,6 +276,11 @@ public class GameManager : MonoBehaviour
 			seatManager.FindAllSeats();
 			waitingQueue.ClearQueue();
 			orderManager.ClearOrders();
+
+			foreach (Customer customer in customers)
+			{
+				Destroy(customer.gameObject);
+			}
 
 			// Add a beginner room
 		};

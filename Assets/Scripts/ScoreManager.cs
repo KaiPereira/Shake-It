@@ -5,13 +5,17 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public float score = 0f;
+    private float score = 100f;
     public TextMeshProUGUI scoreText;
+
+    public void Start()
+    {
+        UpdateUI();
+    }
 
     public void UpdateScore(float amount)
     {
         score += amount;
-        RoundScore();
 
         UpdateUI();
     }
@@ -23,15 +27,14 @@ public class ScoreManager : MonoBehaviour
         score -= cost;
 
         UpdateUI();
-        RoundScore();
 
         return true;
     }
 
     public void UpdateUI()
     {
-        scoreText.SetText(score.ToString());
         RoundScore();
+        scoreText.SetText(score.ToString());
     }
 
     private void RoundScore()
