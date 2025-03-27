@@ -24,7 +24,8 @@ public class MainMenu : MonoBehaviour
 
     public enum UpgradeTypes {
         CUSTOMER,
-        RESTAURANT
+        RESTAURANT,
+        ADS
     }
 
     [System.Serializable]
@@ -108,44 +109,48 @@ public class MainMenu : MonoBehaviour
 
     private void PerformUpgrade(Upgrade upgrade)
     {
-        bool canUpgrade = scoreManager.BuyUpgrade(upgrade.upgradePrices[upgrade.currentLevel]);
+        if (upgrade.currentLevel < upgrade.outlines.Length) {
+            bool canUpgrade = scoreManager.BuyUpgrade(upgrade.upgradePrices[upgrade.currentLevel]);
 
-        if (canUpgrade)
-        {
-            buySound.Play();
-
-            if (upgrade.currentLevel < upgrade.outlines.Length)
+            if (canUpgrade)
             {
+                buySound.Play();
+
                 upgrade.currentLevel++;
-            }
 
-            // Change the price
-            if (upgrade.currentLevel == upgrade.outlines.Length) {
-                upgrade.upgradeText.text = "max"; 
+                // Change the price
+                if (upgrade.currentLevel == upgrade.outlines.Length) {
+                    upgrade.upgradeText.text = "max"; 
+                } else {
+                    upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+                }
+
+                // Fill the outlines
+                for (int i = 0; i < upgrade.currentLevel; i++)
+                {
+                    upgrade.outlines[i].style.backgroundColor = successColor;
+                }
+
+                // Run the custom upgrade function
+                switch (upgrade.upgradeType)
+                {
+                    case UpgradeTypes.CUSTOMER:
+                        gameManager.UpgradeCustomer();
+                        gameManager.customerLevelUpgrade = upgrade.currentLevel;
+                        break;
+                    case UpgradeTypes.RESTAURANT:
+                        gameManager.UpgradeRestaurant();
+                        break;
+                    case UpgradeTypes.ADS:
+                        gameManager.UpgradeAds();
+                        break;
+                    default:
+                        Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD
+                        break;
+                }
             } else {
-                upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+                StartCoroutine(ButtonError(upgrade));
             }
-
-            // Fill the outlines
-            for (int i = 0; i < upgrade.currentLevel; i++)
-            {
-                upgrade.outlines[i].style.backgroundColor = successColor;
-            }
-
-            // Run the custom upgrade function
-            switch (upgrade.upgradeType)
-            {
-                case UpgradeTypes.CUSTOMER:
-                    gameManager.customerLevelUpgrade = upgrade.currentLevel;
-                    break;
-                case UpgradeTypes.RESTAURANT:
-                    gameManager.UpgradeRestaurant();
-                    break;
-                default:
-                    Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD
-                    break;
-            }
-
         } else {
             StartCoroutine(ButtonError(upgrade));
         }

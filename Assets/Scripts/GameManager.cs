@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
 	public int customerSpawn = 20;
 	public int customerLevelUpgrade = 0;
+	public int customerRate = 0;
 	public int restaurantLevel = 0;
 
 	public AudioSource doorbell;
@@ -284,5 +285,15 @@ public class GameManager : MonoBehaviour
 
 			// Add a beginner room
 		};
+	}
+
+	public void UpgradeCustomer()
+	{
+		customerLevelUpgrade++;
+	}
+
+	public void UpgradeAds()
+	{
+		customerRate++;
 	}
 }
