@@ -202,10 +202,10 @@ MonoBehaviour:
     - {fileID: 664319446, guid: 7b98d92fe6bf8cff9b4b144c2ead74dd, type: 3}
     upgradeType: 0
   - upgradePrices:
-    - 1
-    - 1
-    - 1
-    - 1
+    - 15
+    - 35
+    - 60
+    - 100
     currentLevel: 0
     sprites:
     - {fileID: 21300000, guid: c4f4663c821ab529abdd50301ccf182f, type: 3}
@@ -213,6 +213,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 1383f12529a083198b160c29fcc23186, type: 3}
     - {fileID: 21300000, guid: 32c71457f903d4840ae5855f494cc89c, type: 3}
     upgradeType: 1
+  - upgradePrices:
+    - 10
+    - 20
+    - 35
+    - 60
+    currentLevel: 0
+    sprites:
+    - {fileID: 21300000, guid: edc59eb5a7e7f4466b6a476108b6ea68, type: 3}
+    - {fileID: 21300000, guid: b6a848fde62b149c58b026eeb336b700, type: 3}
+    - {fileID: 21300000, guid: 347582375943c998a81c37bbcbb9a921, type: 3}
+    - {fileID: 21300000, guid: 728d0b79508d31887ac93eb307204eec, type: 3}
+    upgradeType: 2
 --- !u!1 &120120779
 GameObject:
   m_ObjectHideFlags: 0
@@ -6930,7 +6942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29462ae0340b123f92f4fbdde55ed10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   scoreText: {fileID: 1139294879}
 --- !u!4 &1016135526
 Transform:
@@ -12467,6 +12478,7 @@ MonoBehaviour:
   toppingScoreFiveStar: 12
   customerSpawn: 20
   customerLevelUpgrade: 0
+  customerRate: 0
   restaurantLevel: 0
   doorbell: {fileID: 298182686}
   bobaTile: {fileID: 11400000, guid: 860d6c8ff1ac14ad49acddd1f604e3d1, type: 2}
@@ -12477,6 +12489,7 @@ MonoBehaviour:
   - {fileID: 1126185892}
   - {fileID: 520265129}
   - {fileID: 1559390216}
+  customers: []
 --- !u!4 &1728891894
 Transform:
   m_ObjectHideFlags: 0
