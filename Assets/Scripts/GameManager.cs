@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 	public int toppingScore;
 	public int toppingScoreFiveStar = 12;
 
-	public int customerSpawn = 20;
 	public int customerLevelUpgrade = 0;
 	public int customerRate = 0;
 	public int restaurantLevel = 0;
@@ -154,12 +153,30 @@ public class GameManager : MonoBehaviour
 				CreateAndAddCustomer();
 				doorbell.Play();
 			}
-			else
+
+			int customerSpawn;
+
+			switch (customerRate)
 			{
-
+				case 0:
+ 					customerSpawn = Random.Range(40, 60);
+					break;
+				case 1:
+ 					customerSpawn = Random.Range(35, 55);
+					break;
+				case 2:
+ 					customerSpawn = Random.Range(25, 45);
+					break;
+				case 3:
+ 					customerSpawn = Random.Range(15, 35);
+					break;
+				case 4:
+ 					customerSpawn = Random.Range(8, 18);
+					break;
+				default:
+ 					customerSpawn = Random.Range(40, 60);
+					break;
 			}
-
-			customerSpawn = Random.Range(40, 60);
 
 			yield return new WaitForSeconds(customerSpawn);
 		}
