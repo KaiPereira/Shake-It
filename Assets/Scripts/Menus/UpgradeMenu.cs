@@ -68,7 +68,16 @@ public class MainMenu : MonoBehaviour
             upgrade.upgradeButton = upgradeElement.Q<Button>("UpgradeButton");
             upgrade.upgradeText = upgradeElement.Q<Label>("UpgradeText");
 
-            upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+            if (upgrade.currentLevel >= upgrade.upgradePrices.Length)
+            {
+                upgrade.upgradeText.text = "max"; 
+                upgrade.upgradeButton.SetEnabled(false);
+                upgrade.upgradeButton.style.backgroundColor = Color.gray;
+            }
+            else
+            {
+                upgrade.upgradeText.text = upgrade.upgradePrices[upgrade.currentLevel].ToString();
+            }
 
             upgrade.outlines = new VisualElement[4]
             {
@@ -91,6 +100,11 @@ public class MainMenu : MonoBehaviour
             {
                 sprites[i].style.backgroundImage = new StyleBackground(upgrade.sprites[i]);
             };
+
+            for (int i = 0; i < upgrade.currentLevel; i++)
+            {
+                upgrade.outlines[i].style.backgroundColor = successColor;
+            }
 
             upgrade.upgradeButton.RegisterCallback<ClickEvent>(evt => PerformUpgrade(upgrade));
         }
