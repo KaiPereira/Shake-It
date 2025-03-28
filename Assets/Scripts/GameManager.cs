@@ -311,4 +311,9 @@ public class GameManager : MonoBehaviour
 	{
 		customerRate++;
 	}
+
+	public void AddChef()
+	{
+
+	}
 }

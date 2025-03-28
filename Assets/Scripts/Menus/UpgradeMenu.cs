@@ -25,7 +25,8 @@ public class MainMenu : MonoBehaviour
     public enum UpgradeTypes {
         CUSTOMER,
         RESTAURANT,
-        ADS
+        ADS,
+        CHEF
     }
 
     [System.Serializable]
@@ -157,6 +158,9 @@ public class MainMenu : MonoBehaviour
                         break;
                     case UpgradeTypes.ADS:
                         gameManager.UpgradeAds();
+                        break;
+                    case UpgradeTypes.CHEF:
+                        gameManager.AddChef();
                         break;
                     default:
                         Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD
