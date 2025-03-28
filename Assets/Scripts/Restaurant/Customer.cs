@@ -44,6 +44,8 @@ public class Customer : MonoBehaviour
 	public Tilemap decorationsTilemap;
 	public TileBase bobaTile;
 
+	private Vector3 currentSeat;
+
 	private GameObject timerInstance;
 
 	private string id;
@@ -144,20 +146,20 @@ public class Customer : MonoBehaviour
 	}
 
 	public void MoveToSeat() {
-		Vector3 nextAvailableSeat = seatManager.GetNextAvailableSeat();
+		currentSeat = seatManager.GetNextAvailableSeat();
 
-		Vector3 nextAvailableSeatModified = new Vector3(nextAvailableSeat.x, nextAvailableSeat.y - 0.01f,nextAvailableSeat.z);
+		Vector3 nextAvailableSeatModified = new Vector3(currentSeat.x, currentSeat.y - 0.01f, currentSeat.z);
 
-		if (nextAvailableSeat != Vector3.zero) {
-		HideOrder();
+		if (currentSeat != Vector3.zero) {
+			HideOrder();
 
-		WaitingQueue waitingQueue = FindObjectOfType<WaitingQueue>();
-		waitingQueue.RemoveCustomerAndShift(this);
+			WaitingQueue waitingQueue = FindObjectOfType<WaitingQueue>();
+			waitingQueue.RemoveCustomerAndShift(this);
 
-		MoveTo(nextAvailableSeatModified, () => {
-			orderRenderer.enabled = true;
-			timerInstanceRenderer.enabled = true;
-		});
+			MoveTo(nextAvailableSeatModified, () => {
+				orderRenderer.enabled = true;
+				timerInstanceRenderer.enabled = true;
+			});
 	    } else {
 			Debug.Log("No seats available");
 	    }
@@ -178,6 +180,7 @@ public class Customer : MonoBehaviour
 		orderManager.FailOrder(gameObject.name);
 
 		MoveTo(entrancePosition, () => {
+			seatManager.ReturnSeat(currentSeat);
 			Destroy(gameObject);
 		});
 	}
@@ -232,6 +235,7 @@ public class Customer : MonoBehaviour
 		decorationsTilemap.SetTile(direction, null);
 
 		MoveTo(entrancePosition, () => {
+			seatManager.ReturnSeat(currentSeat);
 			Destroy(gameObject);
 		});
 	}

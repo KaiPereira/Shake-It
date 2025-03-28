@@ -48,4 +48,12 @@ public class SeatManager : MonoBehaviour
 
 		return seat;
 	}
+
+	public void ReturnSeat(Vector3 seat)
+	{
+		if (!availableSeats.Contains(seat))
+		{
+			availableSeats.Add(seat);
+		}
+	}
 }

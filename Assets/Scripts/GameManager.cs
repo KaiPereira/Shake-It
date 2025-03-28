@@ -299,8 +299,6 @@ public class GameManager : MonoBehaviour
 			{
 				Destroy(customer.gameObject);
 			}
-
-			// Add a beginner room
 		};
 	}
 

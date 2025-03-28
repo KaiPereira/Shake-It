@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    private float score = 100f;
+    private float score = 200f;
     public TextMeshProUGUI scoreText;
 
     public void Start()
