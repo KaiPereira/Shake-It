@@ -11,7 +11,7 @@ public class Employee : MonoBehaviour
 	private Vector3 targetPosition;
 	private bool isMoving = false;
 
-    public Sprite speechBubble;
+    public GameObject speechBubble;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -85,6 +85,7 @@ public class Employee : MonoBehaviour
         {
             //Debug.Log("WORKING ON CUSTOMER: " + orderForEmployee.id);
             workingOnOrder = true;
+            speechBubble.SetActive(true);
 
             MoveTo(cookingSpot1);
 
@@ -98,6 +99,7 @@ public class Employee : MonoBehaviour
             CompleteOrder(orderForEmployee.id);
 
             workingOnOrder = false;
+            speechBubble.SetActive(false);
         }
     }
 

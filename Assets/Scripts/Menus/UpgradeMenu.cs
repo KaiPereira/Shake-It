@@ -26,7 +26,8 @@ public class MainMenu : MonoBehaviour
         CUSTOMER,
         RESTAURANT,
         ADS,
-        CHEF
+        EMPLOYEE_AMOUNT,
+        EMPLOYEE_SPEED
     }
 
     [System.Serializable]
@@ -159,8 +160,11 @@ public class MainMenu : MonoBehaviour
                     case UpgradeTypes.ADS:
                         gameManager.UpgradeAds();
                         break;
-                    case UpgradeTypes.CHEF:
+                    case UpgradeTypes.EMPLOYEE_AMOUNT:
                         gameManager.AddChef();
+                        break;
+                    case UpgradeTypes.EMPLOYEE_SPEED:
+                        gameManager.UpgradeEmployeeSpeed();
                         break;
                     default:
                         Debug.Log("Unknown upgrade type"); // omg actually doing error handling XD

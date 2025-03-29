@@ -3184,6 +3184,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 6453304054d9536509154d4cfd853e6d, type: 3}
     - {fileID: 21300000, guid: 04ee75bcadd927135b21c47532d95ab9, type: 3}
     upgradeType: 3
+  - upgradePrices:
+    - 10
+    - 25
+    - 45
+    - 70
+    currentLevel: 0
+    sprites:
+    - {fileID: 21300000, guid: d489ec74dcf2739c59ce91214d159f9a, type: 3}
+    - {fileID: 21300000, guid: 658b6ca9485affaea818f5734c10b445, type: 3}
+    - {fileID: 21300000, guid: 31700ebfe6e442ce1b5d8b72325b1fb2, type: 3}
+    - {fileID: 21300000, guid: b1301a56f01361dbe8ead2a04af99d7a, type: 3}
+    upgradeType: 3
 --- !u!114 &395756849
 MonoBehaviour:
   m_ObjectHideFlags: 0

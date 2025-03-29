@@ -53,7 +53,9 @@ public class GameManager : MonoBehaviour
 	private Vector3 cookingSpot2;
 
 	public GameObject employeePrefab;
-	private List<GameObject> employees = new List<GameObject>();
+	private List<Employee> employees = new List<Employee>();
+	private float employeeOrderTime;
+	private float employeeRevenue;
 
 	private void Awake()
 	{
@@ -86,9 +88,6 @@ public class GameManager : MonoBehaviour
 		}
 
 		waitingQueue.Initialize(waitingQueuePositionList);
-
-		// REMOVE LATER
-		AddChef();
 
 		StartCoroutine(SpawnCustomers());
 	}
@@ -336,6 +335,20 @@ public class GameManager : MonoBehaviour
 		employeeScript.cookingSpot1 = cookingSpot1;
 		employeeScript.cookingSpot2 = cookingSpot2;
 
-		employees.Add(employee);
+		employees.Add(employeeScript);
+	}
+
+	public void UpgradeEmployeeSpeed()
+	{
+
+	}
+
+	public void UpgradeChef()
+	{
+		foreach (Employee employee in employees)
+		{
+			employee.orderTime = employeeOrderTime;
+			employee.employeeRevenue = employeeRevenue;
+		}
 	}
 }
