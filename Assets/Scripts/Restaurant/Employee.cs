@@ -14,8 +14,11 @@ public class Employee : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private OrderManager orderManager;
+    private ScoreManager scoreManager;
 
     public float orderTime = 15f;
+    // This is the base and +1.5 is added for the randomised rate
+    public float employeeRevenue = 5f;
     private float checkTime = 1f;
     private bool workingOnOrder = false;
 
@@ -24,6 +27,9 @@ public class Employee : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         orderManager = GetComponent<OrderManager>();
+        scoreManager = GetComponent<ScoreManager>();
+
+        StartCoroutine(StartWorking());
     }
 
     public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
@@ -57,6 +63,7 @@ public class Employee : MonoBehaviour
 
     IEnumerator StartWorking()
     {
+        // I just run this every checkTime for performance reasons
         for (;;)
         {
             if (!workingOnOrder)
@@ -83,8 +90,26 @@ public class Employee : MonoBehaviour
             MoveTo(cookingSpot2);
 
             yield return new WaitForSeconds(orderTime / 2);
+            
+            // Finish the order for the customer
+            CompleteOrder(orderForEmployee.id);
 
             workingOnOrder = false;
         }
+    }
+
+    void CompleteOrder(string id)
+    {
+        // Give the payment
+        float randomRevenue = Random.Range(employeeRevenue, employeeRevenue + 1.5f);
+        randomRevenue = Mathf.Round(randomRevenue * 100f) / 100f;
+
+        scoreManager.UpdateScore(randomRevenue);
+
+        // Give the customer their food
+        GameObject customer = GameObject.Find(id);
+        Customer customerScript = customer.GetComponent<Customer>();
+
+        StartCoroutine(customerScript.GetFood());
     }
 }
