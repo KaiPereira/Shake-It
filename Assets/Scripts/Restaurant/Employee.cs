@@ -11,6 +11,15 @@ public class Employee : MonoBehaviour
 	private Vector3 targetPosition;
 	private bool isMoving = false;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
 	{
 		targetPosition = target;
@@ -20,9 +29,15 @@ public class Employee : MonoBehaviour
 	private IEnumerator MoveCoroutine(System.Action onMoveComplete)
 	{
 		isMoving = true;
+        animator.SetBool("IsMoving", isMoving);
+
 
 		while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
 		{
+            Vector3 direction = (targetPosition - transform.position).normalized;
+
+            animator.SetFloat("MoveX", direction.x);
+
 			transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 			yield return null;
 		}
@@ -30,6 +45,7 @@ public class Employee : MonoBehaviour
 		transform.position = targetPosition;
 
         isMoving = false;
+        animator.SetBool("IsMoving", isMoving);
         onMoveComplete?.Invoke();
     }
 }
