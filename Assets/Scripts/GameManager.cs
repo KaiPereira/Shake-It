@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
 	
 	private Vector3 queueStart;
 
+	private Vector3 cookingSpot1;
+	private Vector3 cookingSpot2;
+
 	private void Awake()
 	{
 		if (Instance != null)
@@ -80,6 +83,9 @@ public class GameManager : MonoBehaviour
 		}
 
 		waitingQueue.Initialize(waitingQueuePositionList);
+
+		// REMOVE LATER
+		AddChef();
 
 		StartCoroutine(SpawnCustomers());
 	}
@@ -126,6 +132,7 @@ public class GameManager : MonoBehaviour
 					{
 						// Add the interactioin prompt for rhythm game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						cookingSpot1 = worldPos;
 						orderManager.rhythmPos = worldPos;
 
 						Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
@@ -134,6 +141,7 @@ public class GameManager : MonoBehaviour
 					{
 						// Interactoin prompt for topping game
 						Vector3 worldPos = furnishingTilemap.CellToWorld(tilePosition) + new Vector3(1f, 0, 0);
+						cookingSpot2 = worldPos;
 						orderManager.toppingPos = worldPos;
 
 						Instantiate(toppingPrefab, worldPos, Quaternion.identity);
@@ -314,6 +322,9 @@ public class GameManager : MonoBehaviour
 
 	public void AddChef()
 	{
+		// REMEMBER TO UPDATE EMPLOYEE WHEN UPGRADING RESTAURANTS
+		// REMEMBER TO UPDATE EMPLOYEE'S WHEN UPGRADING THEM
+
 
 	}
 }
