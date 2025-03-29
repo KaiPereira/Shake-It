@@ -71,13 +71,27 @@ public class OrderManager : MonoBehaviour
 		return null;
 	}
 
-	public Order GetSecondOrder()
+	public Order WorkOnSecondOrder()
 	{
 		if (orderQueue.Count >= 2) 
 		{
 			Order[] ordersArray = orderQueue.ToArray();
 
-			return ordersArray[1];
+			Order secondOrder = ordersArray[1];
+
+			Queue<Order> newQueue = new Queue<Order>();
+
+			foreach (Order order in orderQueue)
+			{
+				if (order.id != secondOrder.id)
+				{
+					newQueue.Enqueue(order);
+				}
+			}
+
+			orderQueue = newQueue;
+
+			return secondOrder;
 		}
 
 		return null;

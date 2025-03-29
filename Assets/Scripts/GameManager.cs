@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 
 			int customerSpawn;
 
-			switch (customerRate)
+			/*switch (customerRate)
 			{
 				case 0:
  					customerSpawn = Random.Range(40, 60);
@@ -187,7 +187,9 @@ public class GameManager : MonoBehaviour
 				default:
  					customerSpawn = Random.Range(40, 60);
 					break;
-			}
+			}*/
+
+			customerSpawn = Random.Range(10, 15);
 
 			yield return new WaitForSeconds(customerSpawn);
 		}

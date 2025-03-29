@@ -26,8 +26,8 @@ public class Employee : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        orderManager = GetComponent<OrderManager>();
-        scoreManager = GetComponent<ScoreManager>();
+        orderManager = FindObjectOfType<OrderManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
 
         StartCoroutine(StartWorking());
     }
@@ -77,10 +77,11 @@ public class Employee : MonoBehaviour
 
     IEnumerator WorkOnOrder()
     {
-        Order orderForEmployee = orderManager.GetSecondOrder();
+        Order orderForEmployee = orderManager.WorkOnSecondOrder();
 
         if (orderForEmployee != null)
         {
+            Debug.Log("WORKING ON CUSTOMER: " + orderForEmployee.id);
             workingOnOrder = true;
 
             MoveTo(cookingSpot1);
