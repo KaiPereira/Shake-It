@@ -16,7 +16,7 @@ public class Employee : MonoBehaviour
     private OrderManager orderManager;
     private ScoreManager scoreManager;
 
-    public float orderTime = 15f;
+    public float orderTime = 60f;
     // This is the base and +1.5 is added for the randomised rate
     public float employeeRevenue = 5f;
     private float checkTime = 1f;
@@ -81,7 +81,7 @@ public class Employee : MonoBehaviour
 
         if (orderForEmployee != null)
         {
-            Debug.Log("WORKING ON CUSTOMER: " + orderForEmployee.id);
+            //Debug.Log("WORKING ON CUSTOMER: " + orderForEmployee.id);
             workingOnOrder = true;
 
             MoveTo(cookingSpot1);
