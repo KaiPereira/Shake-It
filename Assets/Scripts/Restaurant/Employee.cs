@@ -13,11 +13,17 @@ public class Employee : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private OrderManager orderManager;
+
+    public float orderTime = 15f;
+    private float checkTime = 1f;
+    private bool workingOnOrder = false;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        orderManager = GetComponent<OrderManager>();
     }
 
     public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
@@ -47,5 +53,38 @@ public class Employee : MonoBehaviour
         isMoving = false;
         animator.SetBool("IsMoving", isMoving);
         onMoveComplete?.Invoke();
+    }
+
+    IEnumerator StartWorking()
+    {
+        for (;;)
+        {
+            if (!workingOnOrder)
+            {
+                StartCoroutine(WorkOnOrder());
+            }
+
+            yield return new WaitForSeconds(checkTime);
+        }
+    }
+
+    IEnumerator WorkOnOrder()
+    {
+        Order orderForEmployee = orderManager.GetSecondOrder();
+
+        if (orderForEmployee != null)
+        {
+            workingOnOrder = true;
+
+            MoveTo(cookingSpot1);
+
+            yield return new WaitForSeconds(orderTime / 2);
+
+            MoveTo(cookingSpot2);
+
+            yield return new WaitForSeconds(orderTime / 2);
+
+            workingOnOrder = false;
+        }
     }
 }

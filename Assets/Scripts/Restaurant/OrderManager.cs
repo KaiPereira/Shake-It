@@ -71,6 +71,18 @@ public class OrderManager : MonoBehaviour
 		return null;
 	}
 
+	public Order GetSecondOrder()
+	{
+		if (orderQueue.Count >= 2) 
+		{
+			Order[] ordersArray = orderQueue.ToArray();
+
+			return ordersArray[1];
+		}
+
+		return null;
+	}
+
 	public void CompleteOrder()
 	{
 		if (orderQueue.Count > 0)
