@@ -11,6 +11,8 @@ public class Employee : MonoBehaviour
 	private Vector3 targetPosition;
 	private bool isMoving = false;
 
+    public Sprite speechBubble;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private OrderManager orderManager;

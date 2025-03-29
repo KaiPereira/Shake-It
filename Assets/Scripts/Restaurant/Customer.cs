@@ -408,31 +408,31 @@ public class Customer : MonoBehaviour
 	private void SetOrderSprite() {
 		switch (orderType)
 		{
-			case OrderType.BROWN_SUGAR: orderSprite = Resources.Load<Sprite>("Boba/brown_sugar_boba"); break;
-			case OrderType.TARO: orderSprite = Resources.Load<Sprite>("Boba/taro_boba"); break;
-			case OrderType.MATCHA: orderSprite = Resources.Load<Sprite>("Boba/matcha_boba"); break;
-			case OrderType.THAI: orderSprite = Resources.Load<Sprite>("Boba/thai_boba"); break;
-			case OrderType.JASMINE: orderSprite = Resources.Load<Sprite>("Boba/jasmine_boba"); break;
-			case OrderType.MANGO: orderSprite = Resources.Load<Sprite>("Boba/mango_boba"); break;
-			case OrderType.STRAWBERRY: orderSprite = Resources.Load<Sprite>("Boba/strawberry_boba"); break;
-			case OrderType.COFFEE: orderSprite = Resources.Load<Sprite>("Boba/coffee_boba"); break;
-			case OrderType.RED_BEAN: orderSprite = Resources.Load<Sprite>("Boba/red_bean_boba"); break;
-			case OrderType.LYCHEE: orderSprite = Resources.Load<Sprite>("Boba/lychee_boba"); break;
-			case OrderType.LEMONADE: orderSprite = Resources.Load<Sprite>("Boba/lemonade_boba"); break;
-			case OrderType.ALOE_VERA: orderSprite = Resources.Load<Sprite>("Boba/aloe_vera_boba"); break;
-			case OrderType.ALMOND_MILK: orderSprite = Resources.Load<Sprite>("Boba/almond_milk_boba"); break;
-			case OrderType.COCONUT: orderSprite = Resources.Load<Sprite>("Boba/coconut_boba"); break;
-			case OrderType.HONEYDEW: orderSprite = Resources.Load<Sprite>("Boba/honeydew_boba"); break;
-			case OrderType.BLACK_SESAME: orderSprite = Resources.Load<Sprite>("Boba/black_sesame_boba"); break;
-			case OrderType.PINEAPPLE: orderSprite = Resources.Load<Sprite>("Boba/pineapple_boba"); break;
-			case OrderType.AVOCADO: orderSprite = Resources.Load<Sprite>("Boba/avocado_boba"); break;
-			case OrderType.TIGER: orderSprite = Resources.Load<Sprite>("Boba/tiger_boba"); break;
-			case OrderType.OOLONG: orderSprite = Resources.Load<Sprite>("Boba/oolong_boba"); break;
-			case OrderType.EARL_GRAY: orderSprite = Resources.Load<Sprite>("Boba/earl_gray_boba"); break;
-			case OrderType.ACAI: orderSprite = Resources.Load<Sprite>("Boba/acai_boba"); break;
-			case OrderType.CARAMEL: orderSprite = Resources.Load<Sprite>("Boba/caramel_boba"); break;
-			case OrderType.YUZU: orderSprite = Resources.Load<Sprite>("Boba/yuzu_boba"); break;
-			case OrderType.BLUEBERRY: orderSprite = Resources.Load<Sprite>("Boba/blueberry_boba"); break;
+			case OrderType.BROWN_SUGAR: orderSprite = Resources.Load<Sprite>("bubbles/brown_sugar_boba"); break;
+			case OrderType.TARO: orderSprite = Resources.Load<Sprite>("bubbles/taro_boba"); break;
+			case OrderType.MATCHA: orderSprite = Resources.Load<Sprite>("bubbles/matcha_boba"); break;
+			case OrderType.THAI: orderSprite = Resources.Load<Sprite>("bubbles/thai_boba"); break;
+			case OrderType.JASMINE: orderSprite = Resources.Load<Sprite>("bubbles/jasmine_boba"); break;
+			case OrderType.MANGO: orderSprite = Resources.Load<Sprite>("bubbles/mango_boba"); break;
+			case OrderType.STRAWBERRY: orderSprite = Resources.Load<Sprite>("bubbles/strawberry_boba"); break;
+			case OrderType.COFFEE: orderSprite = Resources.Load<Sprite>("bubbles/coffee_boba"); break;
+			case OrderType.RED_BEAN: orderSprite = Resources.Load<Sprite>("bubbles/red_bean_boba"); break;
+			case OrderType.LYCHEE: orderSprite = Resources.Load<Sprite>("bubbles/lychee_boba"); break;
+			case OrderType.LEMONADE: orderSprite = Resources.Load<Sprite>("bubbles/lemonade_boba"); break;
+			case OrderType.ALOE_VERA: orderSprite = Resources.Load<Sprite>("bubbles/aloe_vera_boba"); break;
+			case OrderType.ALMOND_MILK: orderSprite = Resources.Load<Sprite>("bubbles/almond_milk_boba"); break;
+			case OrderType.COCONUT: orderSprite = Resources.Load<Sprite>("bubbles/coconut_boba"); break;
+			case OrderType.HONEYDEW: orderSprite = Resources.Load<Sprite>("bubbles/honeydew_boba"); break;
+			case OrderType.BLACK_SESAME: orderSprite = Resources.Load<Sprite>("bubbles/black_sesame_boba"); break;
+			case OrderType.PINEAPPLE: orderSprite = Resources.Load<Sprite>("bubbles/pineapple_boba"); break;
+			case OrderType.AVOCADO: orderSprite = Resources.Load<Sprite>("bubbles/avocado_boba"); break;
+			case OrderType.TIGER: orderSprite = Resources.Load<Sprite>("bubbles/tiger_boba"); break;
+			case OrderType.OOLONG: orderSprite = Resources.Load<Sprite>("bubbles/oolong_boba"); break;
+			case OrderType.EARL_GRAY: orderSprite = Resources.Load<Sprite>("bubbles/earl_gray_boba"); break;
+			case OrderType.ACAI: orderSprite = Resources.Load<Sprite>("bubbles/acai_boba"); break;
+			case OrderType.CARAMEL: orderSprite = Resources.Load<Sprite>("bubbles/caramel_boba"); break;
+			case OrderType.YUZU: orderSprite = Resources.Load<Sprite>("bubbles/yuzu_boba"); break;
+			case OrderType.BLUEBERRY: orderSprite = Resources.Load<Sprite>("bubbles/blueberry_boba"); break;
 		}
 	}
 }

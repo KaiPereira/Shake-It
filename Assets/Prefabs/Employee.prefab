@@ -122,3 +122,6 @@ MonoBehaviour:
   cookingSpot1: {x: 0, y: 0, z: 0}
   cookingSpot2: {x: 0, y: 0, z: 0}
   moveSpeed: 2
+  speechBubble: {fileID: 21300000, guid: 3897a6e1297e6f822be67234f815127d, type: 3}
+  orderTime: 60
+  employeeRevenue: 5
