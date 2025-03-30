@@ -165,6 +165,7 @@ public class MainMenu : MonoBehaviour
                         gameManager.UpgradeQueue();
                         break;
                     case UpgradeTypes.EMPLOYEE_AMOUNT:
+                        Debug.Log("ADDING CHEF");
                         gameManager.AddChef();
                         break;
                     case UpgradeTypes.EMPLOYEE_SPEED:

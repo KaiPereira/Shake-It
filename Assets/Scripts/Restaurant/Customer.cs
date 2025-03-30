@@ -104,12 +104,6 @@ public class Customer : MonoBehaviour
 			timerInstanceRenderer.sortingOrder = 5;
 			timerInstanceRenderer.enabled = false;
 		}
-
-		BoxCollider2D orderCollider = orderObject.AddComponent<BoxCollider2D>();
-		orderCollider.isTrigger = true;
-		orderCollider.size = new Vector2(1f, 1f);
-
-		orderObject.AddComponent<OrderBubble>();
 	}
 
 	public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
@@ -152,6 +146,8 @@ public class Customer : MonoBehaviour
 
 		if (currentSeat != Vector3.zero) {
 			HideOrder();
+
+			orderManager.AddOrder(order);
 
 			WaitingQueue waitingQueue = FindObjectOfType<WaitingQueue>();
 			waitingQueue.RemoveCustomerAndShift(this);

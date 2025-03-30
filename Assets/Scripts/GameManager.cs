@@ -83,11 +83,7 @@ public class GameManager : MonoBehaviour
 		AddInteractionPrompt();
 		GetWaitingQueueStart();
 
-		for (int i = 0; i < 5; i++) {
-			waitingQueuePositionList.Add(queueStart + new Vector3(0f, -i * positionSize, 0f));
-		}
-
-		waitingQueue.Initialize(waitingQueuePositionList);
+		UpdateWaitingQueue();
 
 		StartCoroutine(SpawnCustomers());
 	}
@@ -354,11 +350,13 @@ public class GameManager : MonoBehaviour
 	public void UpgradeEmployeeSpeed()
 	{
 		employeeOrderTime -= 10;
+		UpgradeChef();
 	}
 
 	public void UpgradeEmployeeRevenue()
 	{
 		employeeRevenue += 1;
+		UpgradeChef();
 	}
 
 	public void UpgradeChef()
