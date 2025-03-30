@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
 
 	public Sprite customerSprite;
 	public WaitingQueue waitingQueue;
+	private int waitingQueueSize = 1;
+	List<Vector3> waitingQueuePositionList = new List<Vector3>();
+	float positionSize = 1f;
+
 	public OrderManager orderManager;
 	public SeatManager seatManager;
 
@@ -54,8 +58,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject employeePrefab;
 	private List<Employee> employees = new List<Employee>();
-	private float employeeOrderTime;
-	private float employeeRevenue;
+	private float employeeOrderTime = 60f;
+	private float employeeRevenue = 5f;
 
 	private void Awake()
 	{
@@ -79,10 +83,6 @@ public class GameManager : MonoBehaviour
 		AddInteractionPrompt();
 		GetWaitingQueueStart();
 
-		List<Vector3> waitingQueuePositionList = new List<Vector3>();
-
-		float positionSize = 1f;
-
 		for (int i = 0; i < 5; i++) {
 			waitingQueuePositionList.Add(queueStart + new Vector3(0f, -i * positionSize, 0f));
 		}
@@ -90,6 +90,17 @@ public class GameManager : MonoBehaviour
 		waitingQueue.Initialize(waitingQueuePositionList);
 
 		StartCoroutine(SpawnCustomers());
+	}
+
+	private void UpdateWaitingQueue()
+	{
+		waitingQueuePositionList.Clear();
+
+		for (int i = 0; i < waitingQueueSize; i++) {
+			waitingQueuePositionList.Add(queueStart + new Vector3(0f, -i * positionSize, 0f));
+		}
+
+		waitingQueue.Initialize(waitingQueuePositionList);
 	}
 
 	private void GetWaitingQueueStart()
@@ -334,13 +345,20 @@ public class GameManager : MonoBehaviour
 
 		employeeScript.cookingSpot1 = cookingSpot1;
 		employeeScript.cookingSpot2 = cookingSpot2;
+		employeeScript.orderTime = employeeOrderTime;
+		employeeScript.employeeRevenue = employeeRevenue;
 
 		employees.Add(employeeScript);
 	}
 
 	public void UpgradeEmployeeSpeed()
 	{
+		employeeOrderTime -= 10;
+	}
 
+	public void UpgradeEmployeeRevenue()
+	{
+		employeeRevenue += 1;
 	}
 
 	public void UpgradeChef()
@@ -350,5 +368,12 @@ public class GameManager : MonoBehaviour
 			employee.orderTime = employeeOrderTime;
 			employee.employeeRevenue = employeeRevenue;
 		}
+	}
+
+	public void UpgradeQueue()
+	{
+		waitingQueueSize += 1;
+
+		UpdateWaitingQueue();
 	}
 }

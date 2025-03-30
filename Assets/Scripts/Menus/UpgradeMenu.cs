@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
         CUSTOMER,
         RESTAURANT,
         ADS,
+        QUEUE,
         EMPLOYEE_AMOUNT,
         EMPLOYEE_SPEED
     }
@@ -159,6 +160,9 @@ public class MainMenu : MonoBehaviour
                         break;
                     case UpgradeTypes.ADS:
                         gameManager.UpgradeAds();
+                        break;
+                    case UpgradeTypes.QUEUE:
+                        gameManager.UpgradeQueue();
                         break;
                     case UpgradeTypes.EMPLOYEE_AMOUNT:
                         gameManager.AddChef();

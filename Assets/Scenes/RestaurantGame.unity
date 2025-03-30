@@ -225,6 +225,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 347582375943c998a81c37bbcbb9a921, type: 3}
     - {fileID: 21300000, guid: 728d0b79508d31887ac93eb307204eec, type: 3}
     upgradeType: 2
+  - upgradePrices:
+    - 10
+    - 20
+    - 35
+    - 60
+    currentLevel: 0
+    sprites:
+    - {fileID: 21300000, guid: 4f194bbe332e12187b00d35cbb970665, type: 3}
+    - {fileID: 21300000, guid: 2b9741919d03aa793a0adbabe2bb54fe, type: 3}
+    - {fileID: 21300000, guid: d96962558184cc39abc5524cbd31b760, type: 3}
+    - {fileID: 21300000, guid: 91ca7b68e12b7cfb18c62fa1acce3f8b, type: 3}
+    upgradeType: 3
 --- !u!1 &120120779
 GameObject:
   m_ObjectHideFlags: 0

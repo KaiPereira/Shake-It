@@ -18,7 +18,7 @@ public class Employee : MonoBehaviour
     private OrderManager orderManager;
     private ScoreManager scoreManager;
 
-    public float orderTime = 60f;
+    public float orderTime;
     // This is the base and +1.5 is added for the randomised rate
     public float employeeRevenue = 5f;
     private float checkTime = 1f;
@@ -96,20 +96,20 @@ public class Employee : MonoBehaviour
             yield return new WaitForSeconds(orderTime / 2);
             
             // Finish the order for the customer
-            CompleteOrder(orderForEmployee.id);
+            CompleteOrder(orderForEmployee.id, orderForEmployee);
 
             workingOnOrder = false;
             speechBubble.SetActive(false);
         }
     }
 
-    void CompleteOrder(string id)
+    void CompleteOrder(string id, Order order)
     {
         // Give the payment
         float randomRevenue = Random.Range(employeeRevenue, employeeRevenue + 1.5f);
         randomRevenue = Mathf.Round(randomRevenue * 100f) / 100f;
 
-        scoreManager.UpdateScore(randomRevenue);
+        scoreManager.UpdateScore(randomRevenue * order.multiplier);
 
         // Give the customer their food
         GameObject customer = GameObject.Find(id);
