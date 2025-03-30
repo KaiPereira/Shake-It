@@ -104,6 +104,12 @@ public class Customer : MonoBehaviour
 			timerInstanceRenderer.sortingOrder = 5;
 			timerInstanceRenderer.enabled = false;
 		}
+
+		BoxCollider2D orderCollider = orderObject.AddComponent<BoxCollider2D>();
+		orderCollider.isTrigger = true;
+		orderCollider.size = new Vector2(1f, 1f);
+
+		orderObject.AddComponent<OrderBubble>();
 	}
 
 	public void MoveTo(Vector3 target, System.Action onMoveComplete = null)
@@ -139,15 +145,13 @@ public class Customer : MonoBehaviour
 		return customer;
 	}
 
-	public void MoveToSeat() {
+	public bool MoveToSeat() {
 		currentSeat = seatManager.GetNextAvailableSeat();
 
 		Vector3 nextAvailableSeatModified = new Vector3(currentSeat.x, currentSeat.y - 0.01f, currentSeat.z);
 
 		if (currentSeat != Vector3.zero) {
 			HideOrder();
-
-			orderManager.AddOrder(order);
 
 			WaitingQueue waitingQueue = FindObjectOfType<WaitingQueue>();
 			waitingQueue.RemoveCustomerAndShift(this);
@@ -156,17 +160,13 @@ public class Customer : MonoBehaviour
 				orderRenderer.enabled = true;
 				timerInstanceRenderer.enabled = true;
 			});
+
+			return true;
 	    } else {
 			Debug.Log("No seats available");
 	    }
-	}
 
-	private void OnMouseDown()
-	{
-		if (isReadyToSit)
-		{
-			MoveToSeat();
-		}
+		return false;
 	}
 
 	public void LeaveRestaurant()
