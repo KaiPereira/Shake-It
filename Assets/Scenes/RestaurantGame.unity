@@ -2704,7 +2704,7 @@ AudioSource:
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -21997,7 +21997,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -22538,12 +22538,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1400809034}
     - target: {fileID: 7913922661609734443, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3115.2856
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913922661609734443, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3115.2856
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913922661609734443, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000095367
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7913922661609734443, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304594665328350997, guid: 162d6e7ce3283585da6fd2ce830d8420, type: 3}
       propertyPath: m_IsActive
