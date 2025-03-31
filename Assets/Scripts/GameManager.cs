@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
 	private float employeeOrderTime = 60f;
 	private float employeeRevenue = 5f;
 
+	private GameObject interaction1Ref;
+	private GameObject interaction2Ref;
+
 	private void Awake()
 	{
 		if (Instance != null)
@@ -124,6 +127,9 @@ public class GameManager : MonoBehaviour
 
 	public void AddInteractionPrompt()
 	{
+		Destroy(interaction1Ref);
+		Destroy(interaction2Ref);
+
 		// To Prevent duplicate spots
 		bool rhythmSpot = false;
 		bool toppingSpot = false;
@@ -146,7 +152,7 @@ public class GameManager : MonoBehaviour
 						cookingSpot1 = new Vector3(worldPos.x, worldPos.y - 1, worldPos.z);
 						orderManager.rhythmPos = worldPos;
 
-						Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
+						interaction1Ref = Instantiate(rhythmPrefab, worldPos, Quaternion.identity);
 						rhythmSpot = true;
 					} else if (tile.ToString().Contains("topping") && !toppingSpot) 
 					{
@@ -155,7 +161,7 @@ public class GameManager : MonoBehaviour
 						cookingSpot2 = new Vector3(worldPos.x, worldPos.y - 1, worldPos.z);
 						orderManager.toppingPos = worldPos;
 
-						Instantiate(toppingPrefab, worldPos, Quaternion.identity);
+						interaction2Ref = Instantiate(toppingPrefab, worldPos, Quaternion.identity);
 						toppingSpot = true;
 					}
 				}
