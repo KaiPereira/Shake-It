@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 	private void UpdateWaitingQueue()
 	{
 		waitingQueuePositionList.Clear();
+		GetWaitingQueueStart();
 
 		for (int i = 0; i < waitingQueueSize; i++) {
 			waitingQueuePositionList.Add(queueStart + new Vector3(0f, -i * positionSize, 0f));
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
 
 	private void GetWaitingQueueStart()
 	{
+
 		BoundsInt bounds = decorationsTilemap.cellBounds;
 		TileBase[] allTiles = decorationsTilemap.GetTilesBlock(bounds);
 
@@ -309,9 +311,16 @@ public class GameManager : MonoBehaviour
 
 			restaurants[restaurantLevel].SetActive(true);
 
+			furnishingTilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
+			decorationsTilemap = GameObject.Find("Decorations").GetComponent<Tilemap>();
+
 			// Clear all customers too
 			seatManager.FindAllSeats();
+
 			waitingQueue.ClearQueue();
+			GetWaitingQueueStart();
+			UpdateWaitingQueue();
+
 			orderManager.ClearOrders();
 
 			foreach (Customer customer in customers)
