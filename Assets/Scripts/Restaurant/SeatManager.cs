@@ -19,6 +19,8 @@ public class SeatManager : MonoBehaviour
 	
 	public void FindAllSeats()
 	{
+		tilemap = GameObject.Find("Furnishing").GetComponent<Tilemap>();
+
 		availableSeats.Clear();
 
 		BoundsInt bounds = tilemap.cellBounds;
