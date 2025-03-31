@@ -203,8 +203,6 @@ public class GameManager : MonoBehaviour
 					break;
 			}
 
-			customerSpawn = Random.Range(10, 15);
-
 			yield return new WaitForSeconds(customerSpawn);
 		}
 	}
