@@ -323,10 +323,14 @@ public class GameManager : MonoBehaviour
 
 			orderManager.ClearOrders();
 
+			AddInteractionPrompt();
+
 			foreach (Customer customer in customers)
 			{
 				Destroy(customer.gameObject);
 			}
+
+			customers.Clear();
 		};
 	}
 
