@@ -15,6 +15,7 @@ public class InteractionPrompt : MonoBehaviour
 
 	private LevelLoader levelLoader;
 	private OrderManager orderManager;
+	private GameManager gameManager;
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,6 +23,7 @@ public class InteractionPrompt : MonoBehaviour
 		promptUI.SetActive(false);
 		levelLoader = FindObjectOfType<LevelLoader>();
 		orderManager = FindObjectOfType<OrderManager>();
+		gameManager = FindObjectOfType<GameManager>();
 	}
 
 	// Update is called once per frame
@@ -31,10 +33,15 @@ public class InteractionPrompt : MonoBehaviour
 		{
 			Order currentOrder = orderManager.GetNextOrder();
 
+			// Kinda janky
 			if (trigger == 0 && currentOrder.step == 0) {
 				levelLoader.LoadNextLevel("RhythmGame");
+				gameManager.currentStreak = 0;
+				gameManager.totalClicked = 0;
+				gameManager.totalSpawned = 0;
 			} else if (trigger == 1 && currentOrder.step == 1) {
 				levelLoader.LoadNextLevel("ToppingGame");
+				gameManager.toppingScore = 0;
 			}
 		}
 	}

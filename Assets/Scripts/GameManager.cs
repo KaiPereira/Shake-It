@@ -339,6 +339,14 @@ public class GameManager : MonoBehaviour
 			}
 
 			customers.Clear();
+
+			foreach (Employee employee in employees)
+			{
+				if (employee != null) // OMG ERROR CHECKING
+				{
+					employee.Reset();
+				}
+			}
 		};
 	}
 

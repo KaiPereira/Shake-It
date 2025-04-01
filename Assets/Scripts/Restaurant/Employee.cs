@@ -83,7 +83,6 @@ public class Employee : MonoBehaviour
 
         if (orderForEmployee != null)
         {
-            //Debug.Log("WORKING ON CUSTOMER: " + orderForEmployee.id);
             workingOnOrder = true;
             speechBubble.SetActive(true);
 
@@ -116,5 +115,17 @@ public class Employee : MonoBehaviour
         Customer customerScript = customer.GetComponent<Customer>();
 
         StartCoroutine(customerScript.GetFood());
+    }
+
+    public void Reset()
+    {
+        StopAllCoroutines();
+        isMoving = false;
+        workingOnOrder = false;
+        speechBubble.SetActive(false);
+
+        transform.position = cookingSpot1;
+
+        StartCoroutine(StartWorking());
     }
 }
