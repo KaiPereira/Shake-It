@@ -328,10 +328,14 @@ public class GameManager : MonoBehaviour
 			orderManager.ClearOrders();
 
 			AddInteractionPrompt();
+			UpgradeChef();
 
 			foreach (Customer customer in customers)
 			{
-				Destroy(customer.gameObject);
+				if (customer != null)
+				{
+					Destroy(customer.gameObject);
+				}
 			}
 
 			customers.Clear();
@@ -382,6 +386,8 @@ public class GameManager : MonoBehaviour
 		{
 			employee.orderTime = employeeOrderTime;
 			employee.employeeRevenue = employeeRevenue;
+			employee.cookingSpot1 = cookingSpot1;
+			employee.cookingSpot2 = cookingSpot2;
 		}
 	}
 
